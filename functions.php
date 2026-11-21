@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Réalisations = articles de la catégorie « Réalisations » (boucles, exclusion des listes d'actus).
+require_once __DIR__ . '/inc/realisations.php';
+
 /**
  * Réglages du thème : feuille de style dans l'éditeur.
  */

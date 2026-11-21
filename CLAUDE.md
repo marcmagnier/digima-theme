@@ -47,7 +47,7 @@ Pages (à reconstruire en Gutenberg, les contenus Divi actuels sont obsolètes) 
 | Cloud souverain | Offre Nextcloud, hébergement, sécurité/souveraineté, formules, CTA |
 | Open Data | Conseil et stratégies, cas d'usage, CTA |
 | Conseil IA | Accompagnement IA (dont WordPress + Claude via MCP), CTA |
-| Réalisations | Grille de projets (type de contenu ou catégorie à décider) |
+| Réalisations | Grille de projets : **articles de la catégorie « Réalisations » (slug `realisations`)** — décidé avec Marc le 2026-11-21 ; page `/nos-realisations/` avec le pattern `digima/realisations-grille` |
 | Blog | Liste d'articles |
 | À propos / Notre société | Équipe, histoire, valeurs |
 | Contact | Coordonnées (email, mobile 0487/16.71.32, adresse Chaussée de Ciney 174A1, 5300 Andenne), formulaire, TVA BE 0849.467.305 |
@@ -79,11 +79,12 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - Pied de page (`patterns/pied-de-page.php`) : présentation, activités (sans liens tant que les pages n'existent pas), coordonnées, TVA, liens `/mentions-legales/` et `/vie-privee/` (pages à créer).
 - Les patterns du thème sont mis en cache par WordPress selon la `Version` de `style.css` : après avoir ajouté ou modifié un pattern, changer la version (ou vider le cache) pour le voir en local.
 - Accueil : `templates/front-page.html` = en-tête + **contenu de la page d'accueil WordPress** + pied. Le contenu de l'accueil vit dans la page (éditable par Marc et par le connecteur), pas dans le thème.
-- Patterns de contenu (textes = brouillons à remplacer une fois insérés) : `digima/hero` (couverture « Verre »), `digima/activites` (4 cartes, ancre `#activites`), `digima/approche` (4 arguments sous filet vert, section brume), `digima/derniers-articles` (boucle des 3 derniers articles), `digima/cta-contact` (aplat nuit arrondi avec motif cercle). `digima/page-accueil` les assemble ; il est proposé à la création d'une page.
+- Patterns de contenu (textes = brouillons à remplacer une fois insérés) : `digima/hero` (couverture « Verre »), `digima/activites` (4 cartes, ancre `#activites`), `digima/realisations` (3 dernières réalisations, section brume), `digima/approche` (4 arguments sous filet vert), `digima/derniers-articles` (boucle des 3 derniers articles, section brume), `digima/cta-contact` (aplat nuit arrondi avec motif cercle), `digima/realisations-grille` (toutes les réalisations, 12 par page, paginé). `digima/page-accueil` assemble hero → activités → réalisations → approche → articles → contact ; il est proposé à la création d'une page.
+- Réalisations (`inc/realisations.php`) : les patterns cherchent la catégorie par son slug `realisations` au moment de l'insertion (consigne affichée si elle n'existe pas). Les réalisations sont **exclues des listes d'actus** : page Blog (requête principale) et boucles d'articles sans filtre de catégorie, comme « Derniers articles ».
 - Couverture « Verre » : CSS seul (formes floues animées, cannelures, grain, voile côté texte) + `assets/js/verre.js` (lueur qui suit la souris, JS natif, chargé seulement si une couverture « Verre » est affichée ; inactif sur tactile et si « réduire les animations »).
 - Bouton principal : pastille flèche bleu nuit (pivote au survol). Styles de bloc ajoutés : paragraphe « Étiquette », image « Pastille », groupe « Filet à trait vert ».
 - `assets/images/icones/` : les 11 icônes du design system (tracés de `components/bundle.js`), trait bleu nuit.
-- Manque : réalisations (type de contenu ou catégorie à décider), témoignage, FAQ, contact, pages d'activités, pages légales.
+- Manque : témoignage, FAQ, contact, pages d'activités, pages légales. Sur le site, la catégorie « Réalisations » n'existe pas encore (à créer via le connecteur, avec l'accord de Marc).
 
 ## Contenu et outils côté site
 
