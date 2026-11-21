@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.2.0
+Version: 0.3.0
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -112,6 +112,106 @@ a:where(:not(.wp-element-button)):hover {
 
 .wp-block-button.is-style-lien .wp-element-button:hover {
 	text-decoration-color: currentColor;
+}
+
+/* Bouton compact (en-tête) : 40 px de haut, texte 14 px. Classe « is-petit ». */
+.wp-block-button.is-petit .wp-element-button {
+	padding: 0.53125rem var(--wp--preset--spacing--40);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* ------------------------------------------------------------------
+ * Listes et filets
+ * ------------------------------------------------------------------ */
+.wp-block-list.is-style-sans-puces {
+	list-style: none;
+	padding-left: 0;
+}
+
+.wp-block-list.is-style-sans-puces > li + li {
+	margin-top: var(--wp--preset--spacing--20);
+}
+
+:where(.is-style-section-nuit, .has-nuit-background-color) .wp-block-separator {
+	color: var(--dg-filet);
+}
+
+/* ------------------------------------------------------------------
+ * Logo (image SVG du thème)
+ * ------------------------------------------------------------------ */
+.wp-block-image.digima-logo {
+	margin: 0;
+	flex: none;
+}
+
+.wp-block-image.digima-logo img {
+	display: block;
+	height: auto;
+}
+
+/* ------------------------------------------------------------------
+ * En-tête
+ * ------------------------------------------------------------------ */
+
+/* Menu : pas de soulignement au repos ; page active et survol soulignés de vert. */
+.digima-entete .wp-block-navigation a {
+	text-decoration: none;
+}
+
+.digima-entete .wp-block-navigation a:hover,
+.digima-entete .wp-block-navigation .current-menu-item > a,
+.digima-entete .wp-block-navigation [aria-current="page"] {
+	text-decoration: underline;
+	text-decoration-color: var(--wp--preset--color--vert);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 6px;
+}
+
+/* Menu replié jusqu'à 900 px (le cœur de WordPress ne le replie que sous 600 px). */
+@media (min-width: 600px) and (max-width: 899px) {
+	.digima-entete .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.digima-entete .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+}
+
+/* Menu ouvert (plein écran) : entrées plus grandes. */
+.digima-entete .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+/* Menu replié : bouton puis icône de menu, alignés à droite. */
+@media (max-width: 899px) {
+	.digima-entete .wp-block-navigation {
+		order: 3;
+		flex: 0 0 auto;
+	}
+
+	.digima-entete .digima-entete-action {
+		margin-left: auto;
+	}
+}
+
+/* Sur petit écran, écarts resserrés pour que logo, bouton et menu tiennent. */
+@media (max-width: 599px) {
+	.digima-entete > .wp-block-group {
+		gap: var(--wp--preset--spacing--40);
+	}
+}
+
+/* ------------------------------------------------------------------
+ * Pied de page
+ * ------------------------------------------------------------------ */
+.digima-pied-texte,
+.digima-pied-bas {
+	color: var(--dg-texte-secondaire);
+}
+
+.digima-pied-bas p {
+	margin: 0;
 }
 
 /* ------------------------------------------------------------------

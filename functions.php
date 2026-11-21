@@ -36,4 +36,27 @@ add_action( 'init', function () {
 			'description' => __( 'Sections prêtes à l’emploi aux couleurs de Digima.', 'digima' ),
 		)
 	);
+
+	// Liste sans puces (pied de page, listes de liens). Le style est dans style.css.
+	register_block_style(
+		'core/list',
+		array(
+			'name'  => 'sans-puces',
+			'label' => __( 'Sans puces', 'digima' ),
+		)
+	);
+} );
+
+/**
+ * Favicon de repli (symbole « d ») tant qu'aucune icône de site
+ * n'est définie dans Réglages > Général.
+ */
+add_action( 'wp_head', function () {
+	if ( has_site_icon() ) {
+		return;
+	}
+	printf(
+		'<link rel="icon" href="%s" type="image/svg+xml" />' . "\n",
+		esc_url( get_theme_file_uri( 'assets/images/logo/digima-symbole.svg' ) )
+	);
 } );

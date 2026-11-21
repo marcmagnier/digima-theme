@@ -64,7 +64,7 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - Environnement local : `.wp-env.json` est fourni. `npx @wordpress/env start` (Docker requis) lance WordPress en français sur http://localhost:8888 avec le thème monté et activé (identifiants par défaut de wp-env : admin / password, local uniquement). Le script d'activation suppose que le dépôt est cloné dans un dossier nommé `digima-theme`. Toujours vérifier le rendu en local avant de proposer une PR.
 - Sans Docker (cas du poste de Marc) : WordPress Playground, lancé **depuis PowerShell** à la racine du dépôt (Git Bash déforme le chemin du `--mount`) : `npx -y @wp-playground/cli@latest server --port=8888 "--mount=.:/wordpress/wp-content/themes/digima-theme" --login`, puis activer le thème et passer le site en français (ou via un blueprint). Le contenu de test n'est pas conservé d'un lancement à l'autre.
 
-## État actuel (v0.2.0)
+## État actuel (v0.3.0)
 
 - `theme.json`, aligné sur les tokens du design system :
   - palette : `nuit`, `nuit-700`, `vert`, `vert-texte`, `vert-doux`, `acier`, `acier-doux`, `brume`, `blanc`, `texte-secondaire`, `filet` (sélecteur de couleur libre désactivé) ; `filet-fort`, `danger` et les valeurs du thème « Nuit » sont dans `custom.couleur` ;
@@ -73,8 +73,12 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
   - rayons `custom.radius` (sm 6, md 12, lg 20, pill), ombre `carte`, `custom.measure` (68ch).
 - `styles/` : Section nuit, Section brume, Carte (groupe ou colonne), bouton Lien ; le bouton « contour » sert de bouton secondaire.
 - `style.css` : couleurs sémantiques `--dg-*` qui basculent en thème Nuit dans `.is-style-section-nuit` et `.has-nuit-background-color`, soulignement vert des liens, survols, focus 2 px, pied de page collé en bas.
-- `functions.php` : catégorie de patterns `digima`, `style.css` chargé aussi dans l'éditeur.
-- Manque : pastille flèche du bouton principal, logo et icônes (à reprendre du design system), navigation, pied de page complet, front-page, patterns.
+- `functions.php` : catégorie de patterns `digima`, style de liste « Sans puces », `style.css` chargé aussi dans l'éditeur, favicon de repli (symbole) tant qu'aucune icône de site n'est définie.
+- `assets/images/logo/` : les 4 logos du design system (principal, blanc, nuit mono, symbole), copiés tels quels.
+- En-tête (`patterns/en-tete.php`, appelé par `parts/header.html`) : logo blanc, bloc Navigation sans menu imposé (à l'activation, WordPress reprend le menu classique « Main » du site), bouton compact « Prendre rendez-vous » vers `/contactez-nous/`. Menu replié sous 900 px.
+- Pied de page (`patterns/pied-de-page.php`) : présentation, activités (sans liens tant que les pages n'existent pas), coordonnées, TVA, liens `/mentions-legales/` et `/vie-privee/` (pages à créer).
+- Les patterns du thème sont mis en cache par WordPress selon la `Version` de `style.css` : après avoir ajouté ou modifié un pattern, changer la version (ou vider le cache) pour le voir en local.
+- Manque : pastille flèche du bouton principal, icônes, front-page, patterns de contenu.
 
 ## Contenu et outils côté site
 
