@@ -1,0 +1,12 @@
+{
+	"core": null,
+	"phpVersion": "8.3",
+	"themes": [ "." ],
+	"config": {
+		"WP_DEBUG": true,
+		"SCRIPT_DEBUG": true
+	},
+	"lifecycleScripts": {
+		"afterStart": "npx @wordpress/env run cli wp theme activate digima-theme && npx @wordpress/env run cli wp language core install fr_FR --activate"
+	}
+}
