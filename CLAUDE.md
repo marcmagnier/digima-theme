@@ -61,10 +61,15 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - À chaque version déployée, incrémenter `Version` dans `style.css` (et la mentionner dans le message de commit).
 - **Le thème n'est pas encore activé en production** (Divi l'est). Tant que toutes les pages ne sont pas reconstruites en Gutenberg, ne pas activer le thème sur le site public ; tester via l'environnement local, l'aperçu du personnaliseur, ou un staging.
 - Environnement local : `.wp-env.json` est fourni. `npx @wordpress/env start` (Docker requis) lance WordPress en français sur http://localhost:8888 avec le thème monté et activé (identifiants par défaut de wp-env : admin / password, local uniquement). Le script d'activation suppose que le dépôt est cloné dans un dossier nommé `digima-theme`. Toujours vérifier le rendu en local avant de proposer une PR.
+- Sans Docker (cas du poste de Marc) : WordPress Playground, lancé **depuis PowerShell** à la racine du dépôt (Git Bash déforme le chemin du `--mount`) : `npx -y @wp-playground/cli@latest server --port=8888 "--mount=.:/wordpress/wp-content/themes/digima-theme" --login`, puis activer le thème et passer le site en français (ou via un blueprint). Le contenu de test n'est pas conservé d'un lancement à l'autre.
 
-## État actuel (v0.1.0)
+## État actuel (v0.2.0)
 
-Thème minimal de test : `theme.json` (palette, DM Sans), `parts/header.html`, `parts/footer.html`, `templates/index.html`, `single.html`, `page.html`. Il a servi à valider la synchro GitHub → WordPress. Tout le reste (front-page, patterns, logo, navigation, responsive soigné) est à construire.
+- `theme.json` : palette (sélecteur de couleur libre désactivé), DM Sans 400/600, tailles de police fluides (`small` → `xx-large`), échelle d'espacements `20` → `70`, rayons dans `custom.radius`, variante de bouton « contour », alignements pleine largeur compatibles avec la marge du site.
+- `styles/section-nuit.json` et `styles/section-brume.json` : styles de section (groupe, colonnes) à utiliser pour les bandeaux sombres ou clairs au lieu de régler couleurs de texte, liens et boutons à la main.
+- `functions.php` : catégorie de patterns `digima`, `style.css` chargé aussi dans l'éditeur.
+- `style.css` : pied de page collé en bas, focus visibles, mouvements réduits.
+- Manque : graisse DM Sans 500 (fichier à ajouter), logo, navigation, pied de page complet, front-page, patterns.
 
 ## Contenu et outils côté site
 
