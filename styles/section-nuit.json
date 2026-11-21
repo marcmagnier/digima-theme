@@ -9,26 +9,9 @@
 			"background": "var:preset|color|nuit",
 			"text": "var:preset|color|blanc"
 		},
-		"elements": {
-			"heading": {
-				"color": { "text": "var:preset|color|blanc" }
-			},
-			"link": {
-				"color": { "text": "var:preset|color|vert" },
-				":hover": { "color": { "text": "var:preset|color|blanc" } }
-			},
-			"button": {
-				"color": { "background": "var:preset|color|vert", "text": "var:preset|color|nuit" },
-				":hover": { "color": { "background": "var:preset|color|blanc", "text": "var:preset|color|nuit" } },
-				":focus": { "color": { "background": "var:preset|color|blanc", "text": "var:preset|color|nuit" } }
-			}
-		},
 		"blocks": {
 			"core/post-date": {
-				"color": { "text": "var:preset|color|vert" }
-			},
-			"core/separator": {
-				"color": { "text": "var:preset|color|acier" }
+				"color": { "text": "var:custom|couleur|nuit|texte-secondaire" }
 			}
 		}
 	}

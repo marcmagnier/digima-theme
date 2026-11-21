@@ -13,9 +13,47 @@ Text Domain: digima
 */
 
 /*
- * CSS complémentaire, réduit au minimum : tout ce qui peut aller dans
- * theme.json y va. Ici seulement ce que theme.json ne sait pas exprimer.
+ * CSS complémentaire, réduit au minimum : les valeurs viennent de theme.json
+ * (variables --wp--preset--* et --wp--custom--*), elles-mêmes reprises du
+ * design system Digima. Ici seulement ce que theme.json ne sait pas exprimer.
  */
+
+/* ------------------------------------------------------------------
+ * Couleurs sémantiques, thème « Clair » par défaut et thème « Nuit »
+ * sur les sections sombres. Les styles de bloc s'appuient dessus.
+ * ------------------------------------------------------------------ */
+:root {
+	--dg-texte-secondaire: var(--wp--preset--color--texte-secondaire);
+	--dg-filet: var(--wp--preset--color--filet);
+	--dg-filet-fort: var(--wp--custom--couleur--filet-fort);
+	--dg-carte: var(--wp--preset--color--blanc);
+	--dg-vert-lisible: var(--wp--preset--color--vert-texte);
+	--dg-focus: var(--wp--preset--color--acier);
+}
+
+.is-style-section-nuit,
+.has-nuit-background-color {
+	--dg-texte-secondaire: var(--wp--custom--couleur--nuit--texte-secondaire);
+	--dg-filet: var(--wp--custom--couleur--nuit--filet);
+	--dg-filet-fort: var(--wp--custom--couleur--nuit--filet-fort);
+	--dg-carte: var(--wp--custom--couleur--nuit--carte);
+	--dg-vert-lisible: var(--wp--preset--color--vert);
+	--dg-focus: var(--wp--preset--color--vert);
+}
+
+/* Les couleurs « texte secondaire » et « filet » choisies dans l'éditeur
+   prennent leur valeur Nuit sur fond sombre (sinon texte illisible). */
+:where(.is-style-section-nuit, .has-nuit-background-color) .has-texte-secondaire-color {
+	color: var(--dg-texte-secondaire) !important;
+}
+
+:where(.is-style-section-nuit, .has-nuit-background-color) .has-filet-color {
+	color: var(--dg-filet) !important;
+}
+
+/* ------------------------------------------------------------------
+ * Mise en page générale
+ * ------------------------------------------------------------------ */
 
 /* Pied de page collé en bas quand la page a peu de contenu. */
 .wp-site-blocks {
@@ -35,14 +73,70 @@ Text Domain: digima
 	margin-block-end: 0;
 }
 
-/* Focus visible et cohérent (accessibilité). */
-:where(a, button, input, select, textarea, summary, .wp-element-button):focus-visible {
-	outline: 2px solid var(--wp--preset--color--acier);
-	outline-offset: 3px;
+/* ------------------------------------------------------------------
+ * Liens : couleur du texte, soulignement vert (lisible sur les deux fonds).
+ * ------------------------------------------------------------------ */
+a:where(:not(.wp-element-button)) {
+	text-decoration-color: var(--dg-vert-lisible);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
 }
 
-:where(.is-style-section-nuit, .has-nuit-background-color) :focus-visible {
-	outline-color: var(--wp--preset--color--vert);
+a:where(:not(.wp-element-button)):hover {
+	text-decoration-color: currentColor;
+}
+
+/* ------------------------------------------------------------------
+ * Boutons
+ * ------------------------------------------------------------------ */
+.wp-element-button {
+	transition: background-color 0.15s, border-color 0.15s, color 0.15s, filter 0.15s;
+}
+
+/* Principal : léger assombrissement au survol. */
+.wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button:hover {
+	filter: brightness(0.95);
+}
+
+/* Secondaire (contour) : le contour prend la couleur du texte au survol. */
+.wp-block-button.is-style-outline .wp-element-button:hover {
+	border-color: currentColor;
+}
+
+/* Lien : soulignement vert épais. */
+.wp-block-button.is-style-lien .wp-element-button {
+	text-decoration-color: var(--wp--preset--color--vert);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 5px;
+}
+
+.wp-block-button.is-style-lien .wp-element-button:hover {
+	text-decoration-color: currentColor;
+}
+
+/* ------------------------------------------------------------------
+ * Cartes : bordure au repos, ombre au survol (clair seulement).
+ * ------------------------------------------------------------------ */
+.is-style-carte {
+	transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.is-style-carte:hover {
+	box-shadow: var(--wp--preset--shadow--carte);
+}
+
+:where(.is-style-section-nuit, .has-nuit-background-color) .is-style-carte:hover {
+	box-shadow: none;
+}
+
+/* ------------------------------------------------------------------
+ * Accessibilité
+ * ------------------------------------------------------------------ */
+
+/* Focus clavier : anneau de 2 px décalé de 2 px. */
+:where(a, button, input, select, textarea, summary, .wp-element-button):focus-visible {
+	outline: 2px solid var(--dg-focus);
+	outline-offset: 2px;
 }
 
 /* Respecter la préférence « réduire les animations ». */

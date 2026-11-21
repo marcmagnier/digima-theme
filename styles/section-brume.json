@@ -8,11 +8,6 @@
 		"color": {
 			"background": "var:preset|color|brume",
 			"text": "var:preset|color|nuit"
-		},
-		"blocks": {
-			"core/separator": {
-				"color": { "text": "var:preset|color|blanc" }
-			}
 		}
 	}
 }

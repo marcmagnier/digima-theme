@@ -14,7 +14,7 @@ Langue : **tout en français** (contenus, libellés, commentaires de code, messa
   4. Conseil IA
   Ne plus centrer le discours sur la santé ou le secteur public.
 - **Charte :**
-  - Bleu nuit `#0D2A3A` (couleur de marque), vert accent `#C4E86B`, vert texte `#4D7A10`, bleu acier `#3F7398` (secondaire), brume `#EEF3F6` (fonds clairs).
+  - Bleu nuit `#0D2A3A` (couleur de marque), vert accent `#C4E86B`, vert texte `#4D7A10`, bleu acier `#3F7398` (secondaire), brume `#F3F6F7` (fonds clairs, `surface-alt` du design system). Les autres valeurs (neutres, variantes nuit, échelles) viennent de `tokens.json` du design system et sont reprises dans `theme.json`.
   - **Le vert accent `#C4E86B` n'est jamais utilisé en texte sur fond clair** (contraste insuffisant) : en texte sur fond clair, utiliser `#4D7A10`. Le vert accent sert en fond (boutons, encadrés) ou en texte sur bleu nuit.
   - Typo unique : **DM Sans** (400/500/600), embarquée dans `assets/fonts/`.
   - Logo : minuscules géométriques, points des « i » en vert, + symbole carré « d ».
@@ -27,8 +27,9 @@ Langue : **tout en français** (contenus, libellés, commentaires de code, messa
 - **`theme.json` est la source de vérité** pour couleurs, typo, espacements, tailles, styles de blocs. Pas de couleurs ni de tailles codées en dur dans les templates : utiliser les presets (`var:preset|color|nuit`, `has-nuit-background-color`…).
 - `templates/` : modèles FSE (`index`, `front-page`, `home`, `single`, `page`, `archive`, `search`, `404`).
 - `parts/` : `header`, `footer` (+ éventuelles variantes).
-- `patterns/` : **toutes les sections réutilisables sont des patterns PHP** (en-tête de fichier `Title`, `Slug: digima/...`, `Categories: digima`) pour que Marc puisse les insérer lui-même dans Gutenberg. Catégorie de patterns `digima` à enregistrer dans `functions.php` (pas encore fait).
-- `styles/` : variations de style de blocs si besoin (ex. section sombre).
+- `patterns/` : **toutes les sections réutilisables sont des patterns PHP** (en-tête de fichier `Title`, `Slug: digima/...`, `Categories: digima`) pour que Marc puisse les insérer lui-même dans Gutenberg. Catégorie de patterns `digima` enregistrée dans `functions.php`.
+- `styles/` : variations de style de blocs (Section nuit, Section brume, Carte, bouton Lien).
+- Le **design system** (artifact ci-dessus) est la référence des valeurs : le lire (`project/README.md`, `project/tokens.json`, `project/components/bundle.css`) avant de créer un pattern ou un style. Ses logos, icônes et polices y sont disponibles.
 - `assets/` : polices, images **du thème** uniquement (logo, pictos, textures). Les illustrations d'articles et de pages n'y vont pas (voir Images).
 - CSS supplémentaire minimal dans `style.css` ; pas de framework CSS, pas de build JS sauf nécessité réelle. Pas de jQuery.
 - Accessibilité : contrastes AA, focus visibles, ordre des titres respecté, textes alternatifs.
@@ -65,11 +66,15 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 
 ## État actuel (v0.2.0)
 
-- `theme.json` : palette (sélecteur de couleur libre désactivé), DM Sans 400/600, tailles de police fluides (`small` → `xx-large`), échelle d'espacements `20` → `70`, rayons dans `custom.radius`, variante de bouton « contour », alignements pleine largeur compatibles avec la marge du site.
-- `styles/section-nuit.json` et `styles/section-brume.json` : styles de section (groupe, colonnes) à utiliser pour les bandeaux sombres ou clairs au lieu de régler couleurs de texte, liens et boutons à la main.
+- `theme.json`, aligné sur les tokens du design system :
+  - palette : `nuit`, `nuit-700`, `vert`, `vert-texte`, `vert-doux`, `acier`, `acier-doux`, `brume`, `blanc`, `texte-secondaire`, `filet` (sélecteur de couleur libre désactivé) ; `filet-fort`, `danger` et les valeurs du thème « Nuit » sont dans `custom.couleur` ;
+  - DM Sans 400/500/600 ; tailles `x-small` (13 px) → `display` (56 px) ; h1 44, h2 34, h3 24, h4 19 ; texte 16/26 ;
+  - espacements `10` → `80` = `space-1` → `space-8` du design system (4 → 64 px), `90` = espacement de section (64 → 96 px) ;
+  - rayons `custom.radius` (sm 6, md 12, lg 20, pill), ombre `carte`, `custom.measure` (68ch).
+- `styles/` : Section nuit, Section brume, Carte (groupe ou colonne), bouton Lien ; le bouton « contour » sert de bouton secondaire.
+- `style.css` : couleurs sémantiques `--dg-*` qui basculent en thème Nuit dans `.is-style-section-nuit` et `.has-nuit-background-color`, soulignement vert des liens, survols, focus 2 px, pied de page collé en bas.
 - `functions.php` : catégorie de patterns `digima`, `style.css` chargé aussi dans l'éditeur.
-- `style.css` : pied de page collé en bas, focus visibles, mouvements réduits.
-- Manque : graisse DM Sans 500 (fichier à ajouter), logo, navigation, pied de page complet, front-page, patterns.
+- Manque : pastille flèche du bouton principal, logo et icônes (à reprendre du design system), navigation, pied de page complet, front-page, patterns.
 
 ## Contenu et outils côté site
 
