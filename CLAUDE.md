@@ -64,7 +64,7 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - Environnement local : `.wp-env.json` est fourni. `npx @wordpress/env start` (Docker requis) lance WordPress en français sur http://localhost:8888 avec le thème monté et activé (identifiants par défaut de wp-env : admin / password, local uniquement). Le script d'activation suppose que le dépôt est cloné dans un dossier nommé `digima-theme`. Toujours vérifier le rendu en local avant de proposer une PR.
 - Sans Docker (cas du poste de Marc) : WordPress Playground, lancé **depuis PowerShell** à la racine du dépôt (Git Bash déforme le chemin du `--mount`) : `npx -y @wp-playground/cli@latest server --port=8888 "--mount=.:/wordpress/wp-content/themes/digima-theme" --login`, puis activer le thème et passer le site en français (ou via un blueprint). Le contenu de test n'est pas conservé d'un lancement à l'autre.
 
-## État actuel (v0.4.x)
+## État actuel (v0.5.0 — déployée sur le serveur le 2026-11-21, thème NON activé)
 
 - `theme.json`, aligné sur les tokens du design system :
   - palette : `nuit`, `nuit-700`, `vert`, `vert-texte`, `vert-doux`, `acier`, `acier-doux`, `brume`, `blanc`, `texte-secondaire`, `filet` (sélecteur de couleur libre désactivé) ; `filet-fort`, `danger` et les valeurs du thème « Nuit » sont dans `custom.couleur` ;
