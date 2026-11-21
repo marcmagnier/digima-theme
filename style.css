@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.3.0
+Version: 0.4.1
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -28,26 +28,29 @@ Text Domain: digima
 	--dg-filet-fort: var(--wp--custom--couleur--filet-fort);
 	--dg-carte: var(--wp--preset--color--blanc);
 	--dg-vert-lisible: var(--wp--preset--color--vert-texte);
+	--dg-vert-doux: var(--wp--preset--color--vert-doux);
 	--dg-focus: var(--wp--preset--color--acier);
 }
 
 .is-style-section-nuit,
+.wp-block-cover.is-style-verre,
 .has-nuit-background-color {
 	--dg-texte-secondaire: var(--wp--custom--couleur--nuit--texte-secondaire);
 	--dg-filet: var(--wp--custom--couleur--nuit--filet);
 	--dg-filet-fort: var(--wp--custom--couleur--nuit--filet-fort);
 	--dg-carte: var(--wp--custom--couleur--nuit--carte);
 	--dg-vert-lisible: var(--wp--preset--color--vert);
+	--dg-vert-doux: var(--wp--custom--couleur--nuit--vert-doux);
 	--dg-focus: var(--wp--preset--color--vert);
 }
 
 /* Les couleurs « texte secondaire » et « filet » choisies dans l'éditeur
    prennent leur valeur Nuit sur fond sombre (sinon texte illisible). */
-:where(.is-style-section-nuit, .has-nuit-background-color) .has-texte-secondaire-color {
+:where(.is-style-section-nuit, .is-style-verre, .has-nuit-background-color) .has-texte-secondaire-color {
 	color: var(--dg-texte-secondaire) !important;
 }
 
-:where(.is-style-section-nuit, .has-nuit-background-color) .has-filet-color {
+:where(.is-style-section-nuit, .is-style-verre, .has-nuit-background-color) .has-filet-color {
 	color: var(--dg-filet) !important;
 }
 
@@ -90,12 +93,40 @@ a:where(:not(.wp-element-button)):hover {
  * Boutons
  * ------------------------------------------------------------------ */
 .wp-element-button {
+	white-space: nowrap;
 	transition: background-color 0.15s, border-color 0.15s, color 0.15s, filter 0.15s;
 }
 
-/* Principal : léger assombrissement au survol. */
+/*
+ * Principal : pilule verte avec pastille flèche bleu nuit (design system).
+ * 48 px de haut : 1,5 px de bordure + 4,5 px + pastille de 36 px + 4,5 px + 1,5 px.
+ * Au survol : léger assombrissement et la flèche pivote de -45°.
+ */
+.wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--30);
+	padding: 0.28125rem 0.375rem 0.28125rem var(--wp--preset--spacing--50);
+}
+
+.wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button::after {
+	content: "";
+	flex: none;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	/* Flèche « fleche-droite » du design system, trait vert accent (#C4E86B). */
+	background: var(--wp--preset--color--nuit) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C4E86B' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / 18px no-repeat;
+	transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 .wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button:hover {
 	filter: brightness(0.95);
+}
+
+.wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button:hover::after,
+.wp-block-button:not(.is-style-outline):not(.is-style-lien) .wp-element-button:focus-visible::after {
+	transform: rotate(-45deg);
 }
 
 /* Secondaire (contour) : le contour prend la couleur du texte au survol. */
@@ -114,10 +145,45 @@ a:where(:not(.wp-element-button)):hover {
 	text-decoration-color: currentColor;
 }
 
-/* Bouton compact (en-tête) : 40 px de haut, texte 14 px. Classe « is-petit ». */
+/* Bouton compact (en-tête) : 40 px de haut, texte 14 px, pastille de 32 px. Classe « is-petit ». */
 .wp-block-button.is-petit .wp-element-button {
 	padding: 0.53125rem var(--wp--preset--spacing--40);
 	font-size: var(--wp--preset--font-size--small);
+}
+
+.wp-block-button.is-petit:not(.is-style-outline):not(.is-style-lien) .wp-element-button {
+	padding: 0.15625rem 0.25rem 0.15625rem var(--wp--preset--spacing--40);
+}
+
+.wp-block-button.is-petit:not(.is-style-outline):not(.is-style-lien) .wp-element-button::after {
+	width: 32px;
+	height: 32px;
+	background-size: 16px;
+}
+
+/* ------------------------------------------------------------------
+ * Étiquette (paragraphe, style « Étiquette ») : pilule au-dessus d'un titre.
+ * ------------------------------------------------------------------ */
+.is-style-etiquette {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--20);
+	width: fit-content;
+	padding: 6px 12px;
+	border-radius: var(--wp--custom--radius--pill);
+	background: var(--dg-vert-doux);
+	font-size: var(--wp--preset--font-size--x-small);
+	line-height: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+.is-style-etiquette::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--dg-vert-lisible);
 }
 
 /* ------------------------------------------------------------------
@@ -167,8 +233,8 @@ a:where(:not(.wp-element-button)):hover {
 	text-underline-offset: 6px;
 }
 
-/* Menu replié jusqu'à 900 px (le cœur de WordPress ne le replie que sous 600 px). */
-@media (min-width: 600px) and (max-width: 899px) {
+/* Menu replié jusqu’à 1100 px (le cœur de WordPress ne le replie que sous 600 px ; 6 entrées ne tiennent pas en dessous). */
+@media (min-width: 600px) and (max-width: 1099px) {
 	.digima-entete .wp-block-navigation__responsive-container-open:not(.always-shown) {
 		display: flex;
 	}
@@ -184,13 +250,25 @@ a:where(:not(.wp-element-button)):hover {
 }
 
 /* Menu replié : bouton puis icône de menu, alignés à droite. */
-@media (max-width: 899px) {
+@media (max-width: 1099px) {
 	.digima-entete .wp-block-navigation {
 		order: 3;
 		flex: 0 0 auto;
 	}
 
 	.digima-entete .digima-entete-action {
+		margin-left: auto;
+	}
+}
+
+/* Très petit écran : le bouton d'en-tête laisse la place au menu
+   (le contact reste accessible par le menu et par le hero). */
+@media (max-width: 479px) {
+	.digima-entete .digima-entete-action {
+		display: none;
+	}
+
+	.digima-entete .wp-block-navigation {
 		margin-left: auto;
 	}
 }
@@ -230,6 +308,115 @@ a:where(:not(.wp-element-button)):hover {
 }
 
 /* ------------------------------------------------------------------
+ * Couverture, style « Verre » : fond bleu nuit, formes floues aux couleurs
+ * de la charte qui dérivent lentement, verre cannelé et grain par-dessus.
+ * CSS seul (pas de JavaScript ni de WebGL). Calques :
+ *   fond (span .wp-block-cover__background) < ::before formes < ::after verre < contenu
+ * ------------------------------------------------------------------ */
+.wp-block-cover.is-style-verre {
+	overflow: hidden;
+	isolation: isolate;
+	--digima-voile: linear-gradient(90deg, color-mix(in srgb, var(--wp--preset--color--nuit) 75%, transparent) 0, color-mix(in srgb, var(--wp--preset--color--nuit) 35%, transparent) 50%, transparent 75%);
+}
+
+.wp-block-cover.is-style-verre::before {
+	content: "";
+	position: absolute;
+	inset: -25%;
+	z-index: 1;
+	pointer-events: none;
+	background:
+		radial-gradient(closest-side, color-mix(in srgb, var(--wp--preset--color--acier) 90%, transparent), transparent),
+		radial-gradient(closest-side, color-mix(in srgb, var(--wp--preset--color--vert) 45%, transparent), transparent),
+		radial-gradient(closest-side, var(--wp--preset--color--nuit-700), transparent),
+		radial-gradient(closest-side, color-mix(in srgb, var(--wp--preset--color--acier) 45%, transparent), transparent);
+	background-repeat: no-repeat;
+	/* Positions dans le calque agrandi de 25 % de chaque côté : formes bien dans le cadre. */
+	background-size: 46% 62%, 26% 34%, 40% 48%, 30% 40%;
+	background-position: 78% 32%, 70% 68%, 40% 72%, 30% 28%;
+	filter: blur(40px);
+	animation: digima-derive 38s ease-in-out infinite alternate;
+	will-change: transform;
+}
+
+.wp-block-cover.is-style-verre::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	/* Grain, voile bleu nuit côté texte (lisibilité), puis cannelures :
+	   reflet clair à gauche, ombre à droite de chaque lame. */
+	background:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+		var(--digima-voile),
+		repeating-linear-gradient(
+			90deg,
+			rgb(255 255 255 / 0.07) 0,
+			rgb(255 255 255 / 0.015) 22%,
+			rgb(0 0 0 / 0) 55%,
+			rgb(0 0 0 / 0.2) 100%
+		);
+	background-size: 180px 180px, 100% 100%, var(--digima-cannelure, 34px) 100%;
+	-webkit-backdrop-filter: blur(14px);
+	backdrop-filter: blur(14px);
+}
+
+.wp-block-cover.is-style-verre > .wp-block-cover__inner-container {
+	z-index: 2;
+}
+
+@keyframes digima-derive {
+	0% {
+		transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+	}
+
+	50% {
+		transform: translate3d(-6%, 4%, 0) rotate(7deg) scale(1.05);
+	}
+
+	100% {
+		transform: translate3d(4%, -3%, 0) rotate(-5deg) scale(0.98);
+	}
+}
+
+@media (max-width: 599px) {
+	.wp-block-cover.is-style-verre {
+		--digima-cannelure: 22px;
+		--digima-voile: linear-gradient(color-mix(in srgb, var(--wp--preset--color--nuit) 60%, transparent), color-mix(in srgb, var(--wp--preset--color--nuit) 60%, transparent));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-cover.is-style-verre::before {
+		animation: none !important;
+	}
+}
+
+/* ------------------------------------------------------------------
+ * Hero de l'accueil
+ * ------------------------------------------------------------------ */
+/* Mêmes marges latérales que le reste du site (alignement sur le logo). */
+.wp-block-cover.digima-hero {
+	padding-left: var(--wp--style--root--padding-left);
+	padding-right: var(--wp--style--root--padding-right);
+}
+
+.digima-hero h1 {
+	max-width: 20ch;
+	text-wrap: balance;
+}
+
+/* La partie en vert du titre reste d'un seul tenant quand elle tient sur une ligne. */
+.digima-hero h1 mark {
+	display: inline-block;
+}
+
+.digima-hero .digima-hero-chapeau {
+	max-width: 52ch;
+}
+
+/* ------------------------------------------------------------------
  * Accessibilité
  * ------------------------------------------------------------------ */
 
@@ -245,6 +432,7 @@ a:where(:not(.wp-element-button)):hover {
 	*::before,
 	*::after {
 		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}

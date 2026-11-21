@@ -37,6 +37,22 @@ add_action( 'init', function () {
 		)
 	);
 
+	// Couverture « Verre » (hero) et paragraphe « Étiquette ». Les styles sont dans style.css.
+	register_block_style(
+		'core/cover',
+		array(
+			'name'  => 'verre',
+			'label' => __( 'Verre', 'digima' ),
+		)
+	);
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'  => 'etiquette',
+			'label' => __( 'Étiquette', 'digima' ),
+		)
+	);
+
 	// Liste sans puces (pied de page, listes de liens). Le style est dans style.css.
 	register_block_style(
 		'core/list',
