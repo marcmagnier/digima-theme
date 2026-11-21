@@ -64,7 +64,7 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - Environnement local : `.wp-env.json` est fourni. `npx @wordpress/env start` (Docker requis) lance WordPress en français sur http://localhost:8888 avec le thème monté et activé (identifiants par défaut de wp-env : admin / password, local uniquement). Le script d'activation suppose que le dépôt est cloné dans un dossier nommé `digima-theme`. Toujours vérifier le rendu en local avant de proposer une PR.
 - Sans Docker (cas du poste de Marc) : WordPress Playground, lancé **depuis PowerShell** à la racine du dépôt (Git Bash déforme le chemin du `--mount`) : `npx -y @wp-playground/cli@latest server --port=8888 "--mount=.:/wordpress/wp-content/themes/digima-theme" --login`, puis activer le thème et passer le site en français (ou via un blueprint). Le contenu de test n'est pas conservé d'un lancement à l'autre.
 
-## État actuel (v0.3.0)
+## État actuel (v0.4.x)
 
 - `theme.json`, aligné sur les tokens du design system :
   - palette : `nuit`, `nuit-700`, `vert`, `vert-texte`, `vert-doux`, `acier`, `acier-doux`, `brume`, `blanc`, `texte-secondaire`, `filet` (sélecteur de couleur libre désactivé) ; `filet-fort`, `danger` et les valeurs du thème « Nuit » sont dans `custom.couleur` ;
@@ -75,10 +75,15 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - `style.css` : couleurs sémantiques `--dg-*` qui basculent en thème Nuit dans `.is-style-section-nuit` et `.has-nuit-background-color`, soulignement vert des liens, survols, focus 2 px, pied de page collé en bas.
 - `functions.php` : catégorie de patterns `digima`, style de liste « Sans puces », `style.css` chargé aussi dans l'éditeur, favicon de repli (symbole) tant qu'aucune icône de site n'est définie.
 - `assets/images/logo/` : les 4 logos du design system (principal, blanc, nuit mono, symbole), copiés tels quels.
-- En-tête (`patterns/en-tete.php`, appelé par `parts/header.html`) : logo blanc, bloc Navigation sans menu imposé (à l'activation, WordPress reprend le menu classique « Main » du site), bouton compact « Prendre rendez-vous » vers `/contactez-nous/`. Menu replié sous 900 px.
+- En-tête (`patterns/en-tete.php`, appelé par `parts/header.html`) : logo blanc, bloc Navigation sans menu imposé (à l'activation, WordPress reprend le menu classique « Main » du site), bouton compact « Prendre rendez-vous » vers `/contactez-nous/`. Menu replié sous 1100 px (6 entrées) ; bouton masqué sous 480 px.
 - Pied de page (`patterns/pied-de-page.php`) : présentation, activités (sans liens tant que les pages n'existent pas), coordonnées, TVA, liens `/mentions-legales/` et `/vie-privee/` (pages à créer).
 - Les patterns du thème sont mis en cache par WordPress selon la `Version` de `style.css` : après avoir ajouté ou modifié un pattern, changer la version (ou vider le cache) pour le voir en local.
-- Manque : pastille flèche du bouton principal, icônes, front-page, patterns de contenu.
+- Accueil : `templates/front-page.html` = en-tête + **contenu de la page d'accueil WordPress** + pied. Le contenu de l'accueil vit dans la page (éditable par Marc et par le connecteur), pas dans le thème.
+- Patterns de contenu (textes = brouillons à remplacer une fois insérés) : `digima/hero` (couverture « Verre »), `digima/activites` (4 cartes, ancre `#activites`), `digima/approche` (4 arguments sous filet vert, section brume), `digima/derniers-articles` (boucle des 3 derniers articles), `digima/cta-contact` (aplat nuit arrondi avec motif cercle). `digima/page-accueil` les assemble ; il est proposé à la création d'une page.
+- Couverture « Verre » : CSS seul (formes floues animées, cannelures, grain, voile côté texte) + `assets/js/verre.js` (lueur qui suit la souris, JS natif, chargé seulement si une couverture « Verre » est affichée ; inactif sur tactile et si « réduire les animations »).
+- Bouton principal : pastille flèche bleu nuit (pivote au survol). Styles de bloc ajoutés : paragraphe « Étiquette », image « Pastille », groupe « Filet à trait vert ».
+- `assets/images/icones/` : les 11 icônes du design system (tracés de `components/bundle.js`), trait bleu nuit.
+- Manque : réalisations (type de contenu ou catégorie à décider), témoignage, FAQ, contact, pages d'activités, pages légales.
 
 ## Contenu et outils côté site
 

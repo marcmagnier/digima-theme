@@ -76,6 +76,22 @@ add_action( 'init', function () {
 		)
 	);
 
+	// Icône dans une pastille ronde (cartes d'activité) et groupe sous filet à trait vert (arguments).
+	register_block_style(
+		'core/image',
+		array(
+			'name'  => 'pastille',
+			'label' => __( 'Pastille', 'digima' ),
+		)
+	);
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'filet-vert',
+			'label' => __( 'Filet à trait vert', 'digima' ),
+		)
+	);
+
 	// Liste sans puces (pied de page, listes de liens). Le style est dans style.css.
 	register_block_style(
 		'core/list',

@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.4.2
+Version: 0.4.4
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -29,6 +29,7 @@ Text Domain: digima
 	--dg-carte: var(--wp--preset--color--blanc);
 	--dg-vert-lisible: var(--wp--preset--color--vert-texte);
 	--dg-vert-doux: var(--wp--preset--color--vert-doux);
+	--dg-pastille: var(--wp--preset--color--vert-doux);
 	--dg-focus: var(--wp--preset--color--acier);
 }
 
@@ -41,6 +42,7 @@ Text Domain: digima
 	--dg-carte: var(--wp--custom--couleur--nuit--carte);
 	--dg-vert-lisible: var(--wp--preset--color--vert);
 	--dg-vert-doux: var(--wp--custom--couleur--nuit--vert-doux);
+	--dg-pastille: var(--wp--preset--color--vert);
 	--dg-focus: var(--wp--preset--color--vert);
 }
 
@@ -420,8 +422,129 @@ a:where(:not(.wp-element-button)):hover {
 	display: inline-block;
 }
 
-.digima-hero .digima-hero-chapeau {
+.digima-hero .digima-hero-chapeau,
+.digima-chapeau {
 	max-width: 52ch;
+}
+
+/* ------------------------------------------------------------------
+ * Sections de contenu (patterns de l'accueil)
+ * ------------------------------------------------------------------ */
+
+/* Icône dans une pastille ronde : vert doux sur fond clair, vert plein sur fond nuit. */
+.wp-block-image.is-style-pastille {
+	margin: 0;
+}
+
+.wp-block-image.is-style-pastille img {
+	box-sizing: border-box;
+	padding: 12px;
+	border-radius: 50%;
+	background: var(--dg-pastille);
+}
+
+/* Cartes : le lien final reste en bas, toutes les cartes d'une rangée à la même hauteur. */
+.is-style-carte > .wp-block-buttons:last-child {
+	margin-top: auto;
+	padding-top: var(--wp--preset--spacing--20);
+}
+
+/* Carte d'article : image collée aux bords, coins arrondis conservés. */
+.digima-carte-article {
+	overflow: hidden;
+	height: 100%;
+}
+
+.digima-carte-article > .wp-block-post-featured-image {
+	align-self: stretch;
+	margin: 0;
+}
+
+.digima-carte-article > .wp-block-post-featured-image img {
+	border-radius: 0;
+}
+
+.digima-carte-article .wp-block-post-title a {
+	text-decoration: none;
+}
+
+.digima-carte-article .wp-block-post-title a:hover {
+	text-decoration: underline;
+	text-decoration-color: var(--dg-vert-lisible);
+}
+
+/* Argument sous filet, avec le petit trait vert de 48 × 3 px du design system. */
+.wp-block-group.is-style-filet-vert {
+	position: relative;
+	border-top: 1px solid var(--dg-filet);
+	padding-top: var(--wp--preset--spacing--50);
+}
+
+.wp-block-group.is-style-filet-vert::before {
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: 0;
+	width: 48px;
+	height: 3px;
+	border-radius: 2px;
+	background: var(--wp--preset--color--vert);
+}
+
+/* Aplat nuit arrondi avec le motif du design system : grand cercle au trait
+   nuit-700 qui sort du cadre, accompagné d'un point vert. */
+.digima-motif-cercle {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--wp--custom--radius--lg);
+	isolation: isolate;
+}
+
+.digima-motif-cercle::before,
+.digima-motif-cercle::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.digima-motif-cercle::before {
+	top: -90px;
+	right: -70px;
+	width: 260px;
+	height: 260px;
+	border: 2px solid var(--wp--preset--color--nuit-700);
+}
+
+.digima-motif-cercle::after {
+	top: 26px;
+	right: 176px;
+	width: 14px;
+	height: 14px;
+	background: var(--wp--preset--color--vert);
+}
+
+/* Petit écran : motif réduit dans le coin, marges intérieures resserrées
+   (les marges du bloc sont en style en ligne, d’où !important). */
+@media (max-width: 599px) {
+	.digima-motif-cercle {
+		padding: var(--wp--preset--spacing--60) var(--wp--preset--spacing--50) !important;
+	}
+
+	.digima-motif-cercle::before {
+		top: -110px;
+		right: -110px;
+		width: 180px;
+		height: 180px;
+	}
+
+	.digima-motif-cercle::after {
+		top: 16px;
+		right: 16px;
+		width: 10px;
+		height: 10px;
+	}
 }
 
 /* ------------------------------------------------------------------
