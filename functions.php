@@ -22,7 +22,30 @@ add_action( 'after_setup_theme', function () {
  */
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'digima', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+
+	// Lueur qui suit le pointeur sur les couvertures « Verre » (chargé seulement si besoin, voir plus bas).
+	wp_register_script(
+		'digima-verre',
+		get_theme_file_uri( 'assets/js/verre.js' ),
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
 } );
+
+/**
+ * Charge le script de la couverture « Verre » uniquement sur les pages qui en affichent une.
+ */
+add_filter( 'render_block_core/cover', function ( $html, $block ) {
+	$classes = $block['attrs']['className'] ?? '';
+	if ( str_contains( $classes, 'is-style-verre' ) ) {
+		wp_enqueue_script( 'digima-verre' );
+	}
+	return $html;
+}, 10, 2 );
 
 /**
  * Catégorie de patterns « Digima » : les patterns du dossier patterns/

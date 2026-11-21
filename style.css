@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.4.1
+Version: 0.4.2
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -345,8 +345,9 @@ a:where(:not(.wp-element-button)):hover {
 	inset: 0;
 	z-index: 1;
 	pointer-events: none;
-	/* Grain, voile bleu nuit côté texte (lisibilité), puis cannelures :
-	   reflet clair à gauche, ombre à droite de chaque lame. */
+	/* De haut en bas : grain, voile bleu nuit côté texte (lisibilité),
+	   cannelures (reflet clair à gauche, ombre à droite de chaque lame),
+	   lueur qui suit le pointeur (assets/js/verre.js), donc vue à travers les lames. */
 	background:
 		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
 		var(--digima-voile),
@@ -356,8 +357,14 @@ a:where(:not(.wp-element-button)):hover {
 			rgb(255 255 255 / 0.015) 22%,
 			rgb(0 0 0 / 0) 55%,
 			rgb(0 0 0 / 0.2) 100%
+		),
+		radial-gradient(
+			circle var(--digima-lueur-taille, 520px) at var(--digima-x, 72%) var(--digima-y, 32%),
+			color-mix(in srgb, var(--wp--preset--color--blanc) 16%, transparent) 0,
+			color-mix(in srgb, var(--wp--preset--color--acier) 22%, transparent) 30%,
+			transparent 70%
 		);
-	background-size: 180px 180px, 100% 100%, var(--digima-cannelure, 34px) 100%;
+	background-size: 180px 180px, 100% 100%, var(--digima-cannelure, 34px) 100%, 100% 100%;
 	-webkit-backdrop-filter: blur(14px);
 	backdrop-filter: blur(14px);
 }
@@ -383,6 +390,7 @@ a:where(:not(.wp-element-button)):hover {
 @media (max-width: 599px) {
 	.wp-block-cover.is-style-verre {
 		--digima-cannelure: 22px;
+		--digima-lueur-taille: 300px;
 		--digima-voile: linear-gradient(color-mix(in srgb, var(--wp--preset--color--nuit) 60%, transparent), color-mix(in srgb, var(--wp--preset--color--nuit) 60%, transparent));
 	}
 }
