@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.6.5
+Version: 0.6.6
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -590,160 +590,170 @@ a:where(:not(.wp-element-button)):hover {
 }
 
 /*
- * Galerie « Logos défilants » : chaque logo dans une tuile, en niveaux de gris (couleur au survol).
- * Sur le site : bande horizontale à défilement magnétique, 4 logos visibles (3 puis 2 sur petit écran).
- * Flèches et points ajoutés par assets/js/defilant.js. Dans l'éditeur, la galerie reste une grille.
+ * Groupe « Références » : logos clients cliquables (assets/js/references.js).
+ * Chaque sous-groupe = un logo, le nom du client (titre) et une phrase d'explication.
+ * Sur le site : le texte du client actif au-dessus, la rangée de logos en dessous
+ * (niveaux de gris, l'actif en couleur, barre de progression du passage automatique).
+ * Dans l'éditeur et sans JavaScript : les références restent en grille, toutes visibles.
  */
-.wp-block-gallery.has-nested-images.is-style-logos-defilants {
-	--dg-logos-par-vue: 4;
-	--dg-logos-espace: var(--wp--preset--spacing--40);
-	gap: var(--dg-logos-espace);
+.wp-block-group.is-style-references:not(.est-interactif) {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: var(--wp--preset--spacing--60);
 }
 
-.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image) {
-	flex: 0 0 calc((100% - (var(--dg-logos-par-vue) - 1) * var(--dg-logos-espace)) / var(--dg-logos-par-vue));
+.wp-block-group.is-style-references:not(.est-interactif) > .wp-block-group img {
+	height: 4rem;
 	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+}
+
+.is-style-references.est-interactif {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--60);
+}
+
+.is-style-references.est-interactif > * {
+	margin-block: 0;
+}
+
+/* Tous les panneaux dans la même cellule : la hauteur reste stable d'un client à l'autre. */
+.digima-references__textes {
+	display: grid;
+	width: 100%;
+	max-width: 46rem;
+	text-align: center;
+}
+
+.digima-references__panneau {
+	grid-area: 1 / 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--30);
+	animation: digima-ref-apparition 0.4s ease both;
+}
+
+.digima-references__panneau[hidden] {
+	display: flex;
+	visibility: hidden;
+	animation: none;
+}
+
+.digima-references__panneau > * {
 	margin: 0;
+}
+
+.digima-references__panneau figure {
+	display: none;
+}
+
+@keyframes digima-ref-apparition {
+	from {
+		opacity: 0;
+		transform: translateY(0.5rem);
+	}
+}
+
+.digima-references__logos {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--40);
+	width: 100%;
+}
+
+@media (max-width: 700px) {
+	.digima-references__logos {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.digima-references__onglet {
+	position: relative;
+	display: grid;
+	place-items: center;
 	padding: var(--wp--preset--spacing--40);
+	overflow: hidden;
 	background: var(--dg-carte);
 	border: 1px solid var(--dg-filet);
 	border-radius: var(--wp--custom--radius--lg);
-	justify-content: center;
-	align-items: center;
+	cursor: pointer;
+	transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image) img {
-	flex: none;
+.digima-references__onglet img {
+	display: block;
 	width: 100%;
 	height: 4.5rem;
 	object-fit: contain;
 	filter: grayscale(1);
-	opacity: 0.75;
-	transition: filter 0.2s, opacity 0.2s;
+	opacity: 0.6;
+	transition: filter 0.3s, opacity 0.3s;
 }
 
-.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image):hover img {
+.digima-references__onglet:hover img {
+	opacity: 0.9;
+}
+
+.digima-references__onglet[aria-selected="true"] {
+	border-color: var(--dg-filet-fort);
+	box-shadow: 0 0.5rem 1.5rem rgb(13 42 58 / 0.08);
+}
+
+.digima-references__onglet[aria-selected="true"] img {
 	filter: none;
 	opacity: 1;
 }
 
-:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.has-nested-images.is-style-logos-defilants {
-	flex-wrap: nowrap;
-	overflow-x: auto;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	scrollbar-width: none;
-	overscroll-behavior-x: contain;
-}
-
-:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.is-style-logos-defilants::-webkit-scrollbar {
-	display: none;
-}
-
-:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.is-style-logos-defilants figure.wp-block-image {
-	scroll-snap-align: start;
-}
-
-@media (max-width: 900px) {
-	.wp-block-gallery.has-nested-images.is-style-logos-defilants {
-		--dg-logos-par-vue: 3;
-	}
-}
-
-@media (max-width: 600px) {
-	.wp-block-gallery.has-nested-images.is-style-logos-defilants {
-		--dg-logos-par-vue: 2;
-	}
-}
-
-.digima-defilant {
-	position: relative;
-	padding-inline: 3.25rem;
-	padding-bottom: 2.5rem;
-}
-
-.digima-defilant.est-statique {
-	padding-inline: 0;
-	padding-bottom: 0;
-}
-
-.digima-defilant.est-statique .digima-defilant__fleche,
-.digima-defilant.est-statique .digima-defilant__points {
-	display: none;
-}
-
-.digima-defilant__fleche {
-	position: absolute;
-	top: calc(50% - 1.25rem);
-	transform: translateY(-50%);
-	width: 2.5rem;
-	height: 2.5rem;
-	display: grid;
-	place-items: center;
-	padding: 0;
-	border: 1px solid var(--dg-filet-fort);
-	border-radius: 50%;
-	background: var(--dg-carte);
-	color: inherit;
-	font: inherit;
-	font-size: 1.5rem;
-	line-height: 1;
-	cursor: pointer;
-	transition: background-color 0.2s, border-color 0.2s;
-}
-
-.digima-defilant__fleche:hover {
-	background: var(--wp--preset--color--vert);
-	border-color: var(--wp--preset--color--vert);
-	color: var(--wp--preset--color--nuit);
-}
-
-.digima-defilant__fleche--prec {
-	left: 0;
-}
-
-.digima-defilant__fleche--suiv {
-	right: 0;
-}
-
-.digima-defilant__points {
+/* Barre de progression sous le logo actif pendant le passage automatique. */
+.digima-references__onglet::after {
+	content: "";
 	position: absolute;
 	left: 0;
-	right: 0;
 	bottom: 0;
-	display: flex;
-	justify-content: center;
-	gap: 0.25rem;
+	height: 3px;
+	width: 100%;
+	background: var(--wp--preset--color--vert);
+	transform: scaleX(0);
+	transform-origin: left;
 }
 
-.digima-defilant__point {
-	width: 1.5rem;
-	height: 1.5rem;
-	padding: 0;
+.digima-references__onglet[aria-selected="true"]::after {
+	transform: scaleX(1);
+}
+
+.est-en-cours .digima-references__onglet[aria-selected="true"]::after {
+	animation: digima-ref-progression var(--dg-ref-duree, 6s) linear both;
+}
+
+@keyframes digima-ref-progression {
+	from {
+		transform: scaleX(0);
+	}
+}
+
+.digima-references__pause {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
 	border: 0;
 	background: none;
+	color: var(--dg-texte-secondaire);
+	font: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
 	cursor: pointer;
-	display: grid;
-	place-items: center;
 }
 
-.digima-defilant__point::before {
-	content: "";
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background: var(--dg-filet-fort);
-	transition: background-color 0.2s, transform 0.2s;
-}
-
-.digima-defilant__point[aria-current="true"]::before {
-	background: var(--wp--preset--color--acier);
-	transform: scale(1.25);
+.digima-references__pause:hover {
+	color: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.has-nested-images.is-style-logos-defilants {
-		scroll-behavior: auto;
+	.digima-references__panneau {
+		animation: none;
 	}
 }
 

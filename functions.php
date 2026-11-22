@@ -74,10 +74,10 @@ add_action( 'wp_enqueue_scripts', function () {
 		)
 	);
 
-	// Flèches et points des galeries « Logos défilants » (chargé seulement si besoin, voir plus bas).
+	// Logos cliquables des groupes « Références » (chargé seulement si besoin, voir plus bas).
 	wp_register_script(
-		'digima-defilant',
-		get_theme_file_uri( 'assets/js/defilant.js' ),
+		'digima-references',
+		get_theme_file_uri( 'assets/js/references.js' ),
 		array(),
 		wp_get_theme()->get( 'Version' ),
 		array(
@@ -88,11 +88,11 @@ add_action( 'wp_enqueue_scripts', function () {
 } );
 
 /**
- * Charge le script des galeries « Logos défilants » uniquement sur les pages qui en affichent une.
+ * Charge le script des groupes « Références » uniquement sur les pages qui en affichent un.
  */
-add_filter( 'render_block_core/gallery', function ( $html, $block ) {
-	if ( str_contains( $block['attrs']['className'] ?? '', 'is-style-logos-defilants' ) ) {
-		wp_enqueue_script( 'digima-defilant' );
+add_filter( 'render_block_core/group', function ( $html, $block ) {
+	if ( str_contains( $block['attrs']['className'] ?? '', 'is-style-references' ) ) {
+		wp_enqueue_script( 'digima-references' );
 	}
 	return $html;
 }, 10, 2 );
@@ -169,12 +169,12 @@ add_action( 'init', function () {
 		)
 	);
 
-	// Galerie de logos clients en carrousel (flèches et points). Styles dans style.css, script dans assets/js/defilant.js.
+	// Références clients : logos cliquables qui affichent le nom et une explication. Script : assets/js/references.js.
 	register_block_style(
-		'core/gallery',
+		'core/group',
 		array(
-			'name'  => 'logos-defilants',
-			'label' => __( 'Logos défilants', 'digima' ),
+			'name'  => 'references',
+			'label' => __( 'Références (logos cliquables)', 'digima' ),
 		)
 	);
 

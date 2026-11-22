@@ -1,32 +1,42 @@
 <?php
 /**
- * Title: Preuve (phrase forte et logos clients)
+ * Title: Références clients (logos cliquables)
  * Slug: digima/preuve
  * Categories: digima, testimonials
  * Keywords: preuve, confiance, logos, clients, références
  * Viewport Width: 1400
- * Description: Une phrase de preuve mise en avant, puis un carrousel de logos clients (galerie au style « Logos défilants » : ajoutez-y les logos, seulement avec l'accord des clients).
+ * Description: Quatre références : chaque sous-groupe contient un logo, le nom du client et une phrase. Sur le site, les logos sont cliquables (niveaux de gris, l'actif en couleur), le texte du client actif s'affiche au-dessus et l'on passe au suivant automatiquement. Logos affichés seulement avec l'accord des clients.
  *
  * @package digima
  */
 
 ?>
-<!-- wp:group {"align":"full","className":"is-style-section-brume","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"},"blockGap":"var:preset|spacing|60"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
-<div class="wp-block-group alignfull is-style-section-brume" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
+<!-- wp:group {"align":"full","className":"is-style-section-brume","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|70"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group alignfull is-style-section-brume" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--90);padding-bottom:var(--wp--preset--spacing--90)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"is-style-etiquette"} -->
-<p class="is-style-etiquette"><?php esc_html_e( 'Ils me font confiance', 'digima' ); ?></p>
+<p class="is-style-etiquette"><?php esc_html_e( 'Références', 'digima' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center","fontSize":"xx-large"} -->
-<h2 class="wp-block-heading has-text-align-center has-xx-large-font-size"><?php esc_html_e( 'Une phrase de preuve, courte et vérifiable', 'digima' ); ?></h2>
+<!-- wp:heading {"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Ils me font confiance', 'digima' ); ?></h2>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-references","layout":{"type":"default"}} -->
+<div class="wp-block-group is-style-references"><?php for ( $digima_i = 1; $digima_i <= 4; $digima_i++ ) : ?><!-- wp:group {"layout":{"type":"default"}} -->
+<div class="wp-block-group"><!-- wp:image {"sizeSlug":"medium","linkDestination":"none"} -->
+<figure class="wp-block-image size-medium"><img alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"x-large"} -->
+<h3 class="wp-block-heading has-text-align-center has-x-large-font-size"><?php esc_html_e( 'Nom du client', 'digima' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"digima-chapeau","textColor":"texte-secondaire"} -->
-<p class="has-text-align-center digima-chapeau has-texte-secondaire-color has-text-color"><?php esc_html_e( 'Une ligne de contexte : depuis quand, pour qui, quoi.', 'digima' ); ?></p>
+<p class="has-text-align-center digima-chapeau has-texte-secondaire-color has-text-color"><?php esc_html_e( 'Ce que j’ai réalisé pour lui, en une phrase.', 'digima' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:gallery {"linkTo":"none","sizeSlug":"medium","align":"wide","className":"is-style-logos-defilants"} -->
-<figure class="wp-block-gallery alignwide has-nested-images columns-default is-cropped is-style-logos-defilants"></figure>
-<!-- /wp:gallery --></div>
+<?php endfor; ?></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
