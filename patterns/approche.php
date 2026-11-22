@@ -14,7 +14,7 @@ $digima_arguments = array(
 	array( __( 'J’écoute d’abord', 'digima' ), __( 'Je pars de votre besoin et je le traduis en solution technique, pas l’inverse.', 'digima' ) ),
 	array( __( 'J’explique sans jargon', 'digima' ), __( 'Vous savez ce que vous achetez, comment ça marche et ce que ça coûte.', 'digima' ) ),
 	array( __( 'Des coûts annoncés clairement', 'digima' ), __( 'La création, puis un forfait ou un abonnement : pas de surprise en cours de route.', 'digima' ) ),
-	array( __( 'Vos données restent à vous', 'digima' ), __( 'Je privilégie les logiciels libres et un hébergement 100 % en Belgique.', 'digima' ) ),
+	array( __( 'Vos données restent à vous', 'digima' ), __( 'Je privilégie les logiciels libres et des serveurs 100 % européens.', 'digima' ) ),
 );
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|70"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->

@@ -14,7 +14,7 @@ $digima_arguments = array(
 	array( __( 'Artisan du numérique', 'digima' ), __( 'Conception, développement, hébergement, maintenance et formation : la personne qui vous écoute est celle qui réalise.', 'digima' ) ),
 	array( __( 'Je parle votre langue', 'digima' ), __( 'Pas de jargon. J’écoute votre besoin, je le traduis en solution technique et je vous explique chaque choix.', 'digima' ) ),
 	array( __( 'Votre budget va au projet', 'digima' ), __( 'Une structure légère, sans intermédiaire : ce que vous investissez finance le travail réalisé pour vous.', 'digima' ) ),
-	array( __( 'Souverain et open source', 'digima' ), __( 'Hébergement 100 % en Belgique et logiciels libres comme WordPress et Nextcloud : vos données restent en Europe et vous gardez la liberté de changer de prestataire.', 'digima' ) ),
+	array( __( 'Souverain et open source', 'digima' ), __( 'Serveurs 100 % européens, cloud 100 % belge et logiciels libres comme WordPress et Nextcloud : vos données restent en Europe et vous gardez la liberté de changer de prestataire.', 'digima' ) ),
 );
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|70"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
