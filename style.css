@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.6.9
+Version: 0.6.10
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -277,6 +277,17 @@ a:where(:not(.wp-element-button)):hover {
 /* Ombre discrète dès que la page a défilé (classe posée par assets/js/defilement.js). */
 .digima-a-defile .wp-site-blocks > header.wp-block-template-part {
 	box-shadow: 0 2px 16px rgba(13, 42, 58, 0.25);
+}
+
+/* En-tête compact une fois la page défilée : marges verticales réduites
+   (!important pour passer devant les marges écrites dans le bloc). */
+.digima-entete {
+	transition: padding 0.2s ease;
+}
+
+.digima-entete-compacte .digima-entete {
+	padding-top: var(--wp--preset--spacing--20) !important;
+	padding-bottom: var(--wp--preset--spacing--20) !important;
 }
 
 /* Les ancres (#section) ne passent pas sous l’en-tête collant. */

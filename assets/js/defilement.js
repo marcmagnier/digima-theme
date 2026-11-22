@@ -1,5 +1,5 @@
 /**
- * Défilement : ombre sous l'en-tête collant dès que la page a défilé,
+ * Défilement : ombre sous l'en-tête collant dès que la page a défilé, en-tête plus compact après 100 px,
  * et pastille « Retour en haut » qui apparaît après un écran de défilement.
  */
 ( function () {
@@ -18,6 +18,12 @@
 		enAttente = false;
 		var y = window.scrollY || window.pageYOffset;
 		racine.classList.toggle( 'digima-a-defile', y > 0 );
+		// En-tête compact : seuils différents à l'aller et au retour pour éviter un effet de saut.
+		if ( y > 100 ) {
+			racine.classList.add( 'digima-entete-compacte' );
+		} else if ( y < 20 ) {
+			racine.classList.remove( 'digima-entete-compacte' );
+		}
 		var visible = y > window.innerHeight;
 		bouton.classList.toggle( 'est-visible', visible );
 		// Invisible = hors de l'ordre de tabulation.
