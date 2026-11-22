@@ -74,6 +74,18 @@ add_action( 'wp_enqueue_scripts', function () {
 		)
 	);
 
+	// Ombre de l’en-tête collant et pastille « Retour en haut » (toutes les pages).
+	wp_enqueue_script(
+		'digima-defilement',
+		get_theme_file_uri( 'assets/js/defilement.js' ),
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+
 	// Logos cliquables des groupes « Références » (chargé seulement si besoin, voir plus bas).
 	wp_register_script(
 		'digima-references',

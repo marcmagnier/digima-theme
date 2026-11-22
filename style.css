@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.6.8
+Version: 0.6.9
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -258,6 +258,31 @@ a:where(:not(.wp-element-button)):hover {
 /* ------------------------------------------------------------------
  * En-tête
  * ------------------------------------------------------------------ */
+
+/* En-tête collant : il reste visible pendant le défilement (pages longues).
+   Sous la barre d’administration quand on est connecté (elle n’est fixe qu’au-dessus de 600 px). */
+.wp-site-blocks > header.wp-block-template-part {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	transition: box-shadow 0.2s;
+}
+
+@media (min-width: 601px) {
+	.admin-bar .wp-site-blocks > header.wp-block-template-part {
+		top: var(--wp-admin--admin-bar--height, 32px);
+	}
+}
+
+/* Ombre discrète dès que la page a défilé (classe posée par assets/js/defilement.js). */
+.digima-a-defile .wp-site-blocks > header.wp-block-template-part {
+	box-shadow: 0 2px 16px rgba(13, 42, 58, 0.25);
+}
+
+/* Les ancres (#section) ne passent pas sous l’en-tête collant. */
+html {
+	scroll-padding-top: 6rem;
+}
 
 /* Menu : pas de soulignement au repos ; page active et survol soulignés de vert. */
 .digima-entete .wp-block-navigation a {
@@ -604,6 +629,57 @@ a:where(:not(.wp-element-button)):hover {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
+	}
+}
+
+/* Pastille « Retour en haut » : en bas à droite, après un écran de défilement (assets/js/defilement.js). */
+.digima-haut {
+	position: fixed;
+	right: clamp(1rem, 3vw, 2rem);
+	bottom: clamp(1rem, 3vw, 2rem);
+	z-index: 90;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--wp--preset--color--vert);
+	color: var(--wp--preset--color--nuit);
+	box-shadow: 0 4px 16px rgba(13, 42, 58, 0.3);
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(0.75rem);
+	transition: opacity 0.2s, transform 0.2s, visibility 0s linear 0.2s;
+}
+
+.digima-haut.est-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition: opacity 0.2s, transform 0.2s, visibility 0s;
+}
+
+.digima-haut:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(13, 42, 58, 0.35);
+}
+
+.digima-haut:focus-visible {
+	outline: 2px solid var(--wp--preset--color--nuit);
+	outline-offset: 3px;
+}
+
+.digima-haut svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+@media print {
+	.digima-haut {
+		display: none;
 	}
 }
 
