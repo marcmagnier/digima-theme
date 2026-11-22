@@ -186,6 +186,15 @@ add_action( 'init', function () {
 			'label' => __( 'Sans puces', 'digima' ),
 		)
 	);
+
+	// Catégories en pastilles (page Blog, pages de catégorie). Filtrage des réalisations : inc/realisations.php.
+	register_block_style(
+		'core/categories',
+		array(
+			'name'  => 'pastilles',
+			'label' => __( 'Pastilles', 'digima' ),
+		)
+	);
 } );
 
 /**

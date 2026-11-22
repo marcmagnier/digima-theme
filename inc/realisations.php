@@ -149,3 +149,102 @@ if ( ! function_exists( 'digima_boucle_realisations' ) ) {
 			. '<!-- /wp:query -->';
 	}
 }
+
+/*
+ * Pages de catégorie : on n'y liste que les articles du blog (les réalisations
+ * ont leur page), sauf sur l'archive de la catégorie « Réalisations » elle-même.
+ */
+add_action(
+	'pre_get_posts',
+	function ( $query ) {
+		if ( is_admin() || ! $query->is_main_query() || ! $query->is_category() ) {
+			return;
+		}
+		$id = digima_id_realisations();
+		if ( ! $id || $query->is_category( $id ) ) {
+			return;
+		}
+		$query->set( 'category__not_in', array_merge( (array) $query->get( 'category__not_in' ), array( $id ) ) );
+	}
+);
+
+if ( ! function_exists( 'digima_filtrer_categories_blog' ) ) {
+	/**
+	 * Retire de la liste « Réalisations » et les catégories qui ne contiennent que des réalisations.
+	 *
+	 * @param array $termes Termes renvoyés par get_terms().
+	 * @return array
+	 */
+	function digima_filtrer_categories_blog( $termes ) {
+		$id = digima_id_realisations();
+		if ( ! $id || ! is_array( $termes ) ) {
+			return $termes;
+		}
+		return array_values(
+			array_filter(
+				$termes,
+				function ( $terme ) use ( $id ) {
+					if ( ! $terme instanceof WP_Term || 'category' !== $terme->taxonomy ) {
+						return true;
+					}
+					if ( (int) $terme->term_id === $id ) {
+						return false;
+					}
+					$articles = get_posts(
+						array(
+							'post_type'        => 'post',
+							'posts_per_page'   => 1,
+							'fields'           => 'ids',
+							'no_found_rows'    => true,
+							'cat'              => (int) $terme->term_id,
+							'category__not_in' => array( $id ),
+						)
+					);
+					return ! empty( $articles );
+				}
+			)
+		);
+	}
+}
+
+/*
+ * Bloc « Catégories » : sans les réalisations (filtre actif seulement pendant le rendu du bloc).
+ */
+add_filter(
+	'pre_render_block',
+	function ( $rendu, $block ) {
+		if ( 'core/categories' === ( $block['blockName'] ?? '' ) ) {
+			add_filter( 'get_terms', 'digima_filtrer_categories_blog' );
+		}
+		return $rendu;
+	},
+	10,
+	2
+);
+
+add_filter(
+	'render_block_core/categories',
+	function ( $html, $block ) {
+		remove_filter( 'get_terms', 'digima_filtrer_categories_blog' );
+
+		// Style « Pastilles » : première pastille « Tous les articles » vers la page Blog.
+		if ( ! str_contains( $block['attrs']['className'] ?? '', 'is-style-pastilles' ) || ! empty( $block['attrs']['displayAsDropdown'] ) ) {
+			return $html;
+		}
+		$page_blog = get_option( 'page_for_posts' ) ? get_post( get_option( 'page_for_posts' ) ) : get_page_by_path( 'blog' );
+		if ( ! $page_blog ) {
+			return $html;
+		}
+		$actif = is_page( $page_blog->ID ) || ( is_home() && (int) get_option( 'page_for_posts' ) === $page_blog->ID );
+		$tous  = sprintf(
+			'<li class="cat-item cat-item-tous%1$s"><a href="%2$s"%3$s>%4$s</a></li>',
+			$actif ? ' current-cat' : '',
+			esc_url( get_permalink( $page_blog ) ),
+			$actif ? ' aria-current="page"' : '',
+			esc_html__( 'Tous les articles', 'digima' )
+		);
+		return preg_replace( '/(<ul\b[^>]*>)/', '$1' . $tous, $html, 1 );
+	},
+	10,
+	2
+);
