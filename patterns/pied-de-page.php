@@ -20,7 +20,7 @@ $digima_logo = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":"digima-pied-texte"} -->
-<p class="digima-pied-texte"><?php esc_html_e( 'Agence web à Andenne. Nous concevons, développons et hébergeons des outils web dont vous gardez la maîtrise.', 'digima' ); ?></p>
+<p class="digima-pied-texte"><?php esc_html_e( 'Sites web, cloud souverain, Open Data et IA, à Andenne. Un seul interlocuteur, de la conception à la maintenance.', 'digima' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -31,19 +31,19 @@ $digima_logo = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
 
 <!-- wp:list {"className":"is-style-sans-puces"} -->
 <ul class="wp-block-list is-style-sans-puces"><!-- wp:list-item -->
-<li><?php esc_html_e( 'Sites web et webdesign', 'digima' ); ?></li>
+<li><a href="<?php echo esc_url( home_url( '/sites-web/' ) ); ?>"><?php esc_html_e( 'Sites web', 'digima' ); ?></a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><?php esc_html_e( 'Cloud souverain', 'digima' ); ?></li>
+<li><a href="<?php echo esc_url( home_url( '/cloud-souverain/' ) ); ?>"><?php esc_html_e( 'Cloud souverain', 'digima' ); ?></a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><?php esc_html_e( 'Open Data', 'digima' ); ?></li>
+<li><a href="<?php echo esc_url( home_url( '/open-data/' ) ); ?>"><?php esc_html_e( 'Open Data', 'digima' ); ?></a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><?php esc_html_e( 'Conseil IA', 'digima' ); ?></li>
+<li><a href="<?php echo esc_url( home_url( '/intelligence-artificielle/' ) ); ?>"><?php esc_html_e( 'Intelligence artificielle', 'digima' ); ?></a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:column -->
@@ -58,7 +58,7 @@ $digima_logo = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><a href="tel:+32487167132">0487/16.71.32</a><br><a href="<?php echo esc_url( home_url( '/contactez-nous/' ) ); ?>"><?php esc_html_e( 'Écrire un message', 'digima' ); ?></a></p>
+<p><a href="tel:+32487167132">0487/16.71.32</a><br><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Écrire un message', 'digima' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -73,7 +73,7 @@ $digima_logo = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size"><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>"><?php esc_html_e( 'Mentions légales', 'digima' ); ?></a> · <a href="<?php echo esc_url( home_url( '/vie-privee/' ) ); ?>"><?php esc_html_e( 'Vie privée', 'digima' ); ?></a></p>
+<p class="has-small-font-size"><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>"><?php esc_html_e( 'Mentions légales', 'digima' ); ?></a> · <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>"><?php esc_html_e( 'Confidentialité et cookies', 'digima' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

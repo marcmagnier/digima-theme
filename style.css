@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.5.0
+Version: 0.6.0
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -413,7 +413,7 @@ a:where(:not(.wp-element-button)):hover {
 }
 
 .digima-hero h1 {
-	max-width: 20ch;
+	max-width: 24ch;
 	text-wrap: balance;
 }
 
@@ -567,4 +567,169 @@ a:where(:not(.wp-element-button)):hover {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* ------------------------------------------------------------------
+ * Sections ajoutées en v0.6.0 (brief de rédaction)
+ * ------------------------------------------------------------------ */
+
+/* Photos et illustrations de contenu : coins arrondis. */
+.digima-photo img {
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.digima-capture img {
+	border: 1px solid var(--dg-filet);
+}
+
+/* Bande de logos clients : sobre, en niveaux de gris. */
+.digima-logos img {
+	width: auto;
+	filter: grayscale(1);
+	opacity: 0.75;
+}
+
+/* Liste « Coches » : pastille verte avec une coche à la place de la puce. */
+ul.is-style-coches {
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.is-style-coches li {
+	position: relative;
+	padding-left: 2rem;
+}
+
+ul.is-style-coches li + li {
+	margin-top: var(--wp--preset--spacing--20);
+}
+
+ul.is-style-coches li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.2em;
+	width: 1.25rem;
+	height: 1.25rem;
+	border-radius: 50%;
+	background: var(--dg-pastille) url("assets/images/icones/check.svg") center / 0.8rem no-repeat;
+}
+
+/* Citation « Témoignage » : grande, sans filet, guillemet vert. */
+.wp-block-quote.is-style-temoignage {
+	position: relative;
+	margin: 0;
+	padding: var(--wp--preset--spacing--60) 0 0;
+	border: 0;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1.45;
+	font-weight: 500;
+}
+
+.wp-block-quote.is-style-temoignage::before {
+	content: "“";
+	position: absolute;
+	top: -0.15em;
+	left: -0.04em;
+	font-size: 4rem;
+	line-height: 1;
+	font-weight: 600;
+	color: var(--dg-vert-lisible);
+}
+
+.wp-block-quote.is-style-temoignage cite {
+	display: block;
+	margin-top: var(--wp--preset--spacing--40);
+	font-size: var(--wp--preset--font-size--small);
+	font-style: normal;
+	font-weight: 500;
+	color: var(--dg-texte-secondaire);
+}
+
+/* Étapes numérotées. */
+.digima-etapes {
+	counter-reset: digima-etape;
+}
+
+.digima-etape {
+	counter-increment: digima-etape;
+}
+
+.digima-etape::before {
+	content: counter(digima-etape, decimal-leading-zero);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--dg-vert-lisible);
+}
+
+/* Questions fréquentes (blocs Détails). */
+.digima-faq .wp-block-details {
+	border-bottom: 1px solid var(--dg-filet);
+	padding: var(--wp--preset--spacing--40) 0;
+}
+
+.digima-faq .wp-block-details:first-child {
+	border-top: 1px solid var(--dg-filet);
+}
+
+.digima-faq summary {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--40);
+	cursor: pointer;
+	list-style: none;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 600;
+}
+
+.digima-faq summary::-webkit-details-marker {
+	display: none;
+}
+
+.digima-faq summary::after {
+	content: "+";
+	flex: none;
+	font-weight: 500;
+	color: var(--dg-vert-lisible);
+	transition: transform 0.2s ease;
+}
+
+.digima-faq details[open] summary::after {
+	transform: rotate(45deg);
+}
+
+.digima-faq details > :not(summary) {
+	margin-top: var(--wp--preset--spacing--30);
+}
+
+/* Frise du parcours : filet vertical et point vert à chaque étape. */
+.digima-frise {
+	border-left: 2px solid var(--dg-filet);
+	padding-left: var(--wp--preset--spacing--60);
+}
+
+.digima-frise-etape {
+	position: relative;
+}
+
+.digima-frise-etape::before {
+	content: "";
+	position: absolute;
+	left: calc(-1 * var(--wp--preset--spacing--60) - 7px);
+	top: 0.45em;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--vert);
+	box-shadow: 0 0 0 4px var(--wp--preset--color--blanc);
+}
+
+/* Coordonnées de la page Contact : liens lisibles. */
+.digima-coordonnee {
+	align-items: center;
+}
+
+.digima-coordonnee p {
+	margin: 0;
 }

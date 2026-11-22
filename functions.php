@@ -95,6 +95,22 @@ add_action( 'init', function () {
 		)
 	);
 
+	// Liste à coches vertes (points forts d'une offre) et citation « Témoignage ».
+	register_block_style(
+		'core/list',
+		array(
+			'name'  => 'coches',
+			'label' => __( 'Coches', 'digima' ),
+		)
+	);
+	register_block_style(
+		'core/quote',
+		array(
+			'name'  => 'temoignage',
+			'label' => __( 'Témoignage', 'digima' ),
+		)
+	);
+
 	// Liste sans puces (pied de page, listes de liens). Le style est dans style.css.
 	register_block_style(
 		'core/list',

@@ -441,6 +441,13 @@
 			}
 		}
 	},
+	"customTemplates": [
+		{
+			"name": "page-pleine-largeur",
+			"title": "Page pleine largeur (sans titre)",
+			"postTypes": [ "page" ]
+		}
+	],
 	"templateParts": [
 		{
 			"name": "header",

@@ -5,13 +5,13 @@
  * Categories: digima, header
  * Block Types: core/template-part/header
  * Inserter: no
- * Description: Bandeau bleu nuit : logo, menu principal et bouton « Prendre rendez-vous ».
+ * Description: Bandeau bleu nuit : logo, menu principal et bouton « Contact ».
  *
  * @package digima
  */
 
 $digima_logo    = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
-$digima_contact = home_url( '/contactez-nous/' );
+$digima_contact = home_url( '/contact/' );
 ?>
 <!-- wp:group {"align":"full","className":"is-style-section-nuit digima-entete","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group alignfull is-style-section-nuit digima-entete" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|60"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
@@ -23,7 +23,7 @@ $digima_contact = home_url( '/contactez-nous/' );
 
 <!-- wp:buttons {"className":"digima-entete-action"} -->
 <div class="wp-block-buttons digima-entete-action"><!-- wp:button {"className":"is-petit"} -->
-<div class="wp-block-button is-petit"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $digima_contact ); ?>"><?php esc_html_e( 'Prendre rendez-vous', 'digima' ); ?></a></div>
+<div class="wp-block-button is-petit"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $digima_contact ); ?>"><?php esc_html_e( 'Contact', 'digima' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

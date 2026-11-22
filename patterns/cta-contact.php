@@ -3,9 +3,9 @@
  * Title: Bandeau contact (bleu nuit)
  * Slug: digima/cta-contact
  * Categories: digima, call-to-action
- * Keywords: contact, rendez-vous, bandeau
+ * Keywords: contact, projet, bandeau, appel à l'action
  * Viewport Width: 1400
- * Description: Bloc bleu nuit arrondi en fin de page : une invitation à prendre contact. Un seul par page.
+ * Description: Bloc bleu nuit arrondi en fin de page : une invitation à prendre contact, avec l'engagement de délai de réponse. Un seul par page.
  *
  * @package digima
  */
@@ -19,13 +19,13 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"digima-chapeau","textColor":"texte-secondaire"} -->
-<p class="digima-chapeau has-texte-secondaire-color has-text-color"><?php esc_html_e( 'Décrivez-nous votre besoin en quelques lignes : nous revenons vers vous pour en discuter.', 'digima' ); ?></p>
+<p class="digima-chapeau has-texte-secondaire-color has-text-color"><?php esc_html_e( 'Décrivez votre besoin en quelques lignes. Je réponds sous deux jours ouvrables, souvent bien plus vite.', 'digima' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( '/contactez-nous/' ) ); ?>"><?php esc_html_e( 'Prendre rendez-vous', 'digima' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Me contacter', 'digima' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

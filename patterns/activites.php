@@ -5,31 +5,31 @@
  * Categories: digima, services
  * Keywords: activités, services, cartes, grille
  * Viewport Width: 1400
- * Description: Les quatre activités de Digima à égalité, en cartes avec icône, texte et lien. Textes à adapter.
+ * Description: Les quatre activités à égalité, en cartes avec icône, une phrase et un lien vers la page de l'activité. Textes à adapter.
  *
  * @package digima
  */
 
 $digima_icones = get_theme_file_uri( 'assets/images/icones/' );
 $digima_cartes = array(
-	array( 'web', __( 'Sites web et webdesign', 'digima' ), __( 'Sites vitrines et sur mesure sous WordPress, webshops et annuaires. Un site clair, rapide et facile à mettre à jour.', 'digima' ) ),
-	array( 'cloud', __( 'Cloud souverain', 'digima' ), __( 'Vos fichiers, agendas et contacts sur Nextcloud, hébergé en Europe. Open source, sans licence.', 'digima' ) ),
-	array( 'open-data', __( 'Open Data', 'digima' ), __( 'Stratégie de données ouvertes, cartographie et API : publier vos données et les rendre utiles.', 'digima' ) ),
-	array( 'ia', __( 'Conseil IA', 'digima' ), __( 'Des usages concrets de l’IA dans votre travail, cadrés et sans dépendance inutile.', 'digima' ) ),
+	array( 'web', __( 'Sites web', 'digima' ), __( 'Un site conçu, hébergé et entretenu par la même personne, sous WordPress.', 'digima' ), '/sites-web/', __( 'Découvrir les sites web', 'digima' ) ),
+	array( 'cloud', __( 'Cloud souverain', 'digima' ), __( 'Vos fichiers restent en Belgique, sous droit européen, sur un Nextcloud que je gère pour vous.', 'digima' ), '/cloud-souverain/', __( 'Découvrir le cloud souverain', 'digima' ) ),
+	array( 'open-data', __( 'Open Data', 'digima' ), __( 'Faire parler vos données publiques : quoi publier, comment, et les data stories qui les rendent lisibles.', 'digima' ), '/open-data/', __( 'Découvrir l’Open Data', 'digima' ) ),
+	array( 'ia', __( 'Intelligence artificielle', 'digima' ), __( 'Une IA utile, sans le battage : conseil, formation et IA au service de votre site.', 'digima' ), '/intelligence-artificielle/', __( 'Découvrir l’offre IA', 'digima' ) ),
 );
 ?>
 <!-- wp:group {"anchor":"activites","align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|70"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div id="activites" class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--90);padding-bottom:var(--wp--preset--spacing--90)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"is-style-etiquette"} -->
-<p class="is-style-etiquette"><?php esc_html_e( 'Nos activités', 'digima' ); ?></p>
+<p class="is-style-etiquette"><?php esc_html_e( 'Activités', 'digima' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading"><?php esc_html_e( 'Ce que nous faisons pour vous', 'digima' ); ?></h2>
+<h2 class="wp-block-heading"><?php esc_html_e( 'Quatre métiers, un seul interlocuteur', 'digima' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"digima-chapeau","textColor":"texte-secondaire","fontSize":"large"} -->
-<p class="digima-chapeau has-texte-secondaire-color has-text-color has-large-font-size"><?php esc_html_e( 'Quatre métiers complémentaires, menés par la même équipe.', 'digima' ); ?></p>
+<p class="digima-chapeau has-texte-secondaire-color has-text-color has-large-font-size"><?php esc_html_e( 'Des besoins différents, la même personne pour vous écouter, construire et entretenir.', 'digima' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -49,7 +49,7 @@ $digima_cartes = array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-lien"} -->
-<div class="wp-block-button is-style-lien"><a class="wp-block-button__link wp-element-button" href="#"><?php esc_html_e( 'En savoir plus', 'digima' ); ?></a></div>
+<div class="wp-block-button is-style-lien"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( $digima_carte[3] ) ); ?>"><?php echo esc_html( $digima_carte[4] ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

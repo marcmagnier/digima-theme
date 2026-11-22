@@ -1,26 +1,26 @@
 <?php
 /**
- * Title: Approche (4 arguments)
+ * Title: Arguments (4, sous filet vert)
  * Slug: digima/approche
  * Categories: digima, about
- * Keywords: approche, valeurs, arguments, pourquoi
+ * Keywords: approche, valeurs, arguments, façon de travailler, garanties
  * Viewport Width: 1400
- * Description: Quatre arguments courts sous un filet avec trait vert. Textes à adapter ; pas de chiffres non vérifiables.
+ * Description: Quatre arguments courts sous un filet à trait vert (façon de travailler, garanties…). Textes à adapter ; pas de chiffres non vérifiables.
  *
  * @package digima
  */
 
 $digima_arguments = array(
-	array( __( 'Vous gardez la maîtrise', 'digima' ), __( 'Logiciels open source et données hébergées en Europe : vos outils restent les vôtres.', 'digima' ) ),
-	array( __( 'Un seul interlocuteur', 'digima' ), __( 'Du premier conseil à l’hébergement, la même équipe suit votre projet.', 'digima' ) ),
-	array( __( 'Du concret', 'digima' ), __( 'Pas de jargon : des outils utiles, expliqués simplement, que vos équipes savent utiliser.', 'digima' ) ),
-	array( __( 'Une agence proche', 'digima' ), __( 'Basés à Andenne, joignables directement par téléphone.', 'digima' ) ),
+	array( __( 'J’écoute d’abord', 'digima' ), __( 'Je pars de votre besoin et je le traduis en solution technique, pas l’inverse.', 'digima' ) ),
+	array( __( 'J’explique sans jargon', 'digima' ), __( 'Vous savez ce que vous achetez, comment ça marche et ce que ça coûte.', 'digima' ) ),
+	array( __( 'Des coûts annoncés clairement', 'digima' ), __( 'La création, puis un forfait ou un abonnement : pas de surprise en cours de route.', 'digima' ) ),
+	array( __( 'Vos données restent à vous', 'digima' ), __( 'Je privilégie les logiciels libres et un hébergement 100 % en Belgique.', 'digima' ) ),
 );
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|90","bottom":"var:preset|spacing|90"},"blockGap":"var:preset|spacing|70"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--90);padding-bottom:var(--wp--preset--spacing--90)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"is-style-etiquette"} -->
-<p class="is-style-etiquette"><?php esc_html_e( 'Notre approche', 'digima' ); ?></p>
+<p class="is-style-etiquette"><?php esc_html_e( 'Façon de travailler', 'digima' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->

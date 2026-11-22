@@ -19,7 +19,8 @@ Langue : **tout en français** (contenus, libellés, commentaires de code, messa
   - Typo unique : **DM Sans** (400/500/600), embarquée dans `assets/fonts/`.
   - Logo : minuscules géométriques, points des « i » en vert, + symbole carré « d ».
   - Référence complète : artifact design système « Digima » sur claude.ai (https://claude.ai/artifact/QLWMHN4cJXKENtZTNViZBk). Les décisions de projet sont aussi dans le projet claude.ai « Digima.be ».
-- **À confirmer avec Marc** (ne pas inventer) : hébergement « Belgique » ou « Belgique et France », prix publics des formules, photos.
+- **Brief de rédaction** : fichier local à la racine du clone, **jamais versionné** (dépôt public). Il fait foi pour les textes : écriture au « je » (pas de « nous » d’'agence), « hébergé à Bruxelles, 100 % en Belgique », aucun prix public, témoignages en lorem ipsum en attendant les vrais.
+- **Images** : fournies par Marc (photos et illustrations générées par IA). En attendant, blocs image d’'attente de la médiathèque avec une légende qui décrit l’'image voulue.
 
 ## Architecture du thème
 
@@ -63,6 +64,10 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - **Le thème n'est pas encore activé en production** (Divi l'est). Tant que toutes les pages ne sont pas reconstruites en Gutenberg, ne pas activer le thème sur le site public ; tester via l'environnement local, l'aperçu du personnaliseur, ou un staging.
 - Environnement local : `.wp-env.json` est fourni. `npx @wordpress/env start` (Docker requis) lance WordPress en français sur http://localhost:8888 avec le thème monté et activé (identifiants par défaut de wp-env : admin / password, local uniquement). Le script d'activation suppose que le dépôt est cloné dans un dossier nommé `digima-theme`. Toujours vérifier le rendu en local avant de proposer une PR.
 - Sans Docker (cas du poste de Marc) : WordPress Playground, lancé **depuis PowerShell** à la racine du dépôt (Git Bash déforme le chemin du `--mount`) : `npx -y @wp-playground/cli@latest server --port=8888 "--mount=.:/wordpress/wp-content/themes/digima-theme" --login`, puis activer le thème et passer le site en français (ou via un blueprint). Le contenu de test n'est pas conservé d'un lancement à l'autre.
+
+## Adresses des pages
+
+`/sites-web/`, `/cloud-souverain/`, `/open-data/`, `/intelligence-artificielle/`, `/realisations/`, `/a-propos/`, `/blog/`, `/contact/`, `/mentions-legales/`, `/confidentialite/`. Pages intérieures : modèle « Page pleine largeur (sans titre) » + pattern `digima/en-tete-page` (qui porte le H1).
 
 ## État actuel (v0.5.0 — déployée sur le serveur le 2026-11-21, thème NON activé)
 

@@ -66,21 +66,21 @@ add_action(
 
 if ( ! function_exists( 'digima_url_realisations' ) ) {
 	/**
-	 * Adresse de la liste des réalisations : la page « nos-realisations » si elle existe,
-	 * sinon l'archive de la catégorie.
+	 * Adresse de la liste des réalisations : la page publiée « realisations » si elle existe,
+	 * sinon l'archive de la catégorie, sinon l'adresse prévue (/realisations/).
 	 *
 	 * @return string
 	 */
 	function digima_url_realisations() {
-		$page = get_page_by_path( 'nos-realisations' );
-		if ( $page ) {
+		$page = get_page_by_path( 'realisations' );
+		if ( $page && 'publish' === $page->post_status ) {
 			return get_permalink( $page );
 		}
 		$categorie = get_term_by( 'slug', DIGIMA_SLUG_REALISATIONS, 'category' );
 		if ( $categorie ) {
 			return get_category_link( $categorie );
 		}
-		return home_url( '/nos-realisations/' );
+		return home_url( '/realisations/' );
 	}
 }
 
