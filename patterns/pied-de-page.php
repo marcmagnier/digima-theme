@@ -73,7 +73,7 @@ $digima_logo = get_theme_file_uri( 'assets/images/logo/digima-logo-blanc.svg' );
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size"><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>"><?php esc_html_e( 'Mentions légales', 'digima' ); ?></a> · <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>"><?php esc_html_e( 'Confidentialité et cookies', 'digima' ); ?></a></p>
+<p class="has-small-font-size"><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>"><?php esc_html_e( 'Mentions légales', 'digima' ); ?></a> · <a href="<?php echo esc_url( home_url( '/conditions-generales/' ) ); ?>"><?php esc_html_e( 'Conditions générales', 'digima' ); ?></a> · <a href="<?php echo esc_url( home_url( '/confidentialite/' ) ); ?>"><?php esc_html_e( 'Confidentialité et cookies', 'digima' ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
