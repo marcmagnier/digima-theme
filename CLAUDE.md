@@ -19,7 +19,7 @@ Langue : **tout en français** (contenus, libellés, commentaires de code, messa
   - Typo unique : **DM Sans** (400/500/600), embarquée dans `assets/fonts/`.
   - Logo : minuscules géométriques, points des « i » en vert, + symbole carré « d ».
   - Référence complète : artifact design système « Digima » sur claude.ai (https://claude.ai/artifact/QLWMHN4cJXKENtZTNViZBk). Les décisions de projet sont aussi dans le projet claude.ai « Digima.be ».
-- **Brief de rédaction** : fichier local à la racine du clone, **jamais versionné** (dépôt public). Il fait foi pour les textes : écriture au « je » (pas de « nous » d’'agence), hébergement : sites web sur des serveurs en Belgique et en France (« 100 % européen »), cloud Nextcloud exclusivement en Belgique, aucun prix public, témoignages en lorem ipsum en attendant les vrais.
+- **Brief de rédaction** : fichier local à la racine du clone, **jamais versionné** (dépôt public). Il fait foi pour les textes : écriture au « je » (pas de « nous » d’'agence), hébergement : sites web sur des serveurs en Belgique et en France (« 100 % européen »), cloud Nextcloud exclusivement en Belgique, aucun prix public (seule exception validée par Marc : cloud « Dès 100 € par mois »), témoignages en lorem ipsum en attendant les vrais.
 - **Images** : fournies par Marc (photos et illustrations générées par IA). En attendant, blocs image d’'attente de la médiathèque avec une légende qui décrit l’'image voulue.
 
 ## Architecture du thème
