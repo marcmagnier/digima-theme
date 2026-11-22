@@ -134,3 +134,16 @@ add_action( 'wp_head', function () {
 		esc_url( get_theme_file_uri( 'assets/images/logo/digima-symbole.svg' ) )
 	);
 } );
+
+/**
+ * Pages qui commencent par un en-tête de page (pattern digima/en-tete-page) :
+ * modèle « Page pleine largeur » automatiquement, sans titre en double.
+ * Un modèle choisi à la main dans l'éditeur reste prioritaire.
+ */
+add_filter( 'page_template_hierarchy', function ( $templates ) {
+	$page = get_queried_object();
+	if ( $page instanceof WP_Post && ! get_page_template_slug( $page ) && str_contains( $page->post_content, 'digima-hero-page' ) ) {
+		array_unshift( $templates, 'page-pleine-largeur.php' );
+	}
+	return $templates;
+} );

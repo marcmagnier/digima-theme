@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.6.0
+Version: 0.6.1
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -732,4 +732,18 @@ ul.is-style-coches li::before {
 
 .digima-coordonnee p {
 	margin: 0;
+}
+
+/* Section de page rédigée dans l'éditeur : pleine largeur, espacement vertical standard. */
+.wp-block-group.digima-section {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: var(--wp--preset--spacing--90);
+	padding-bottom: var(--wp--preset--spacing--90);
+}
+
+/* Légende des images d'attente (à remplacer). */
+.digima-photo figcaption {
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--dg-texte-secondaire);
 }
