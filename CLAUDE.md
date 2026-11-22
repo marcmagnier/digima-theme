@@ -97,7 +97,7 @@ Patterns à prévoir en priorité : hero, grille des 4 activités, bloc chiffres
 - Limites connues du connecteur :
   - `ewpa/upload-image` n'importe que depuis une URL publique se terminant par une extension d'image.
   - `ewpa/search-replace` échoue si le texte cherché contient un antislash ; pour un remplacement complet, préférer `ewpa/update-post` avec tout le contenu.
-- **Images :** les images du thème vont dans ce dépôt ; les illustrations d'articles et de pages vont dans la **médiathèque WordPress**. Boîte de dépôt prévue : partage Nextcloud de Marc (cloud.hdrive.net), puis import dans WordPress (à terme via un petit plugin « import depuis Nextcloud » authentifié — plugin séparé, pas dans ce thème).
+- **Images :** les images du thème vont dans ce dépôt ; les illustrations d'articles et de pages vont dans la **médiathèque WordPress**. Boîte de dépôt : un partage Nextcloud public de Marc (cloud.hdrive.net, envoi autorisé). Son lien est un secret : il n'est **jamais** écrit dans ce dépôt public (il est dans la mémoire locale de Claude ou à demander à Marc). Méthode : déposer le fichier avec `curl -T fichier.png -H "X-Requested-With: XMLHttpRequest" https://cloud.hdrive.net/public.php/dav/files/<jeton>/fichier.png`, puis l'importer avec `ewpa/upload-image` depuis cette même adresse WebDAV (elle renvoie l'image ; le lien `/s/<jeton>/download/...` renvoie un zip). Captures d'écran de sites : Edge headless (`--window-size=1440,900 --virtual-time-budget=15000` et un user-agent de navigateur), car les services de capture en ligne sont souvent bloqués par les protections anti-robots.
 - Style des illustrations : vectoriel plat aux couleurs de la charte (fond bleu nuit, accents vert et bleu acier), personnages simples.
 
 ## Règles générales
