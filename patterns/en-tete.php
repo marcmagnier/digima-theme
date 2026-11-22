@@ -5,7 +5,7 @@
  * Categories: digima, header
  * Block Types: core/template-part/header
  * Inserter: no
- * Description: Bandeau bleu nuit : logo, menu principal (liens écrits ici, modifiables dans l'Éditeur du site) et bouton « Contact ».
+ * Description: Bandeau bleu nuit : logo, menu principal et bouton « Contact ».
  *
  * @package digima
  */
@@ -19,21 +19,7 @@ $digima_contact = home_url( '/contact/' );
 <figure class="wp-block-image size-full is-resized digima-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $digima_logo ); ?>" alt="<?php echo esc_attr__( 'Digima, retour à l’accueil', 'digima' ); ?>" style="width:104px"/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:navigation {"textColor":"blanc","overlayBackgroundColor":"nuit","overlayTextColor":"blanc","overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"center"},"style":{"layout":{"selfStretch":"fill"},"spacing":{"blockGap":"var:preset|spacing|50"}}} -->
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Sites web', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/sites-web/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Cloud souverain', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/cloud-souverain/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Open Data', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/open-data/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Intelligence artificielle', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/intelligence-artificielle/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Réalisations', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/realisations/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'À propos', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/a-propos/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-
-<!-- wp:navigation-link {"label":"<?php echo esc_attr__( 'Blog', 'digima' ); ?>","url":"<?php echo esc_url( home_url( '/blog/' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-<!-- /wp:navigation -->
+<!-- wp:navigation {"textColor":"blanc","overlayBackgroundColor":"nuit","overlayTextColor":"blanc","overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"center"},"style":{"layout":{"selfStretch":"fill"},"spacing":{"blockGap":"var:preset|spacing|50"}}} /-->
 
 <!-- wp:buttons {"className":"digima-entete-action"} -->
 <div class="wp-block-buttons digima-entete-action"><!-- wp:button {"className":"is-petit"} -->

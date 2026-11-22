@@ -18,6 +18,42 @@ require_once __DIR__ . '/inc/realisations.php';
  */
 add_action( 'after_setup_theme', function () {
 	add_editor_style( 'style.css' );
+
+	// Menus WordPress classiques (Apparence > Menus) : l'emplacement « Menu principal »
+	// alimente la navigation de l'en-tête (voir le filtre ci-dessous).
+	register_nav_menus(
+		array(
+			'principal' => __( 'Menu principal (en-tête)', 'digima' ),
+		)
+	);
+} );
+
+/**
+ * La navigation de l'en-tête (bloc Navigation sans menu choisi) affiche le menu
+ * attribué à l'emplacement « Menu principal » dans Apparence > Menus.
+ * Sans menu attribué, le comportement par défaut de WordPress s'applique.
+ */
+add_filter( 'block_core_navigation_render_fallback', function ( $blocs ) {
+	$emplacements = get_nav_menu_locations();
+	if ( empty( $emplacements['principal'] ) || ! class_exists( 'WP_Classic_To_Block_Menu_Converter' ) ) {
+		return $blocs;
+	}
+	$menu = wp_get_nav_menu_object( $emplacements['principal'] );
+	if ( ! $menu ) {
+		return $blocs;
+	}
+	$balisage = WP_Classic_To_Block_Menu_Converter::convert( $menu );
+	if ( is_wp_error( $balisage ) || empty( $balisage ) ) {
+		return $blocs;
+	}
+	return array_values(
+		array_filter(
+			parse_blocks( $balisage ),
+			function ( $bloc ) {
+				return ! empty( $bloc['blockName'] );
+			}
+		)
+	);
 } );
 
 /**
