@@ -5,7 +5,7 @@
  * Categories: digima, testimonials
  * Keywords: preuve, confiance, logos, clients, références
  * Viewport Width: 1400
- * Description: Une phrase de preuve mise en avant, puis une bande de logos clients (images vides à remplir ; logos affichés seulement avec l'accord des clients).
+ * Description: Une phrase de preuve mise en avant, puis un carrousel de logos clients (galerie au style « Logos défilants » : ajoutez-y les logos, seulement avec l'accord des clients).
  *
  * @package digima
  */
@@ -26,21 +26,7 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"digima-logos","style":{"spacing":{"blockGap":"var:preset|spacing|70"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","verticalAlignment":"center"}} -->
-<div class="wp-block-group digima-logos"><!-- wp:image {"height":"48px","sizeSlug":"medium","linkDestination":"none"} -->
-<figure class="wp-block-image size-medium is-resized"><img alt="" style="height:48px"/></figure>
-<!-- /wp:image -->
-
-<!-- wp:image {"height":"48px","sizeSlug":"medium","linkDestination":"none"} -->
-<figure class="wp-block-image size-medium is-resized"><img alt="" style="height:48px"/></figure>
-<!-- /wp:image -->
-
-<!-- wp:image {"height":"48px","sizeSlug":"medium","linkDestination":"none"} -->
-<figure class="wp-block-image size-medium is-resized"><img alt="" style="height:48px"/></figure>
-<!-- /wp:image -->
-
-<!-- wp:image {"height":"48px","sizeSlug":"medium","linkDestination":"none"} -->
-<figure class="wp-block-image size-medium is-resized"><img alt="" style="height:48px"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group --></div>
+<!-- wp:gallery {"linkTo":"none","sizeSlug":"medium","align":"wide","className":"is-style-logos-defilants"} -->
+<figure class="wp-block-gallery alignwide has-nested-images columns-default is-cropped is-style-logos-defilants"></figure>
+<!-- /wp:gallery --></div>
 <!-- /wp:group -->

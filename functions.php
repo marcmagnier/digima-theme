@@ -73,7 +73,29 @@ add_action( 'wp_enqueue_scripts', function () {
 			'strategy'  => 'defer',
 		)
 	);
+
+	// Flèches et points des galeries « Logos défilants » (chargé seulement si besoin, voir plus bas).
+	wp_register_script(
+		'digima-defilant',
+		get_theme_file_uri( 'assets/js/defilant.js' ),
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
 } );
+
+/**
+ * Charge le script des galeries « Logos défilants » uniquement sur les pages qui en affichent une.
+ */
+add_filter( 'render_block_core/gallery', function ( $html, $block ) {
+	if ( str_contains( $block['attrs']['className'] ?? '', 'is-style-logos-defilants' ) ) {
+		wp_enqueue_script( 'digima-defilant' );
+	}
+	return $html;
+}, 10, 2 );
 
 /**
  * Charge le script de la couverture « Verre » uniquement sur les pages qui en affichent une.
@@ -144,6 +166,15 @@ add_action( 'init', function () {
 		array(
 			'name'  => 'temoignage',
 			'label' => __( 'Témoignage', 'digima' ),
+		)
+	);
+
+	// Galerie de logos clients en carrousel (flèches et points). Styles dans style.css, script dans assets/js/defilant.js.
+	register_block_style(
+		'core/gallery',
+		array(
+			'name'  => 'logos-defilants',
+			'label' => __( 'Logos défilants', 'digima' ),
 		)
 	);
 

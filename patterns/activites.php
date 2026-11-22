@@ -25,7 +25,7 @@ $digima_cartes = array(
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading"><?php esc_html_e( 'Quatre métiers, un seul interlocuteur', 'digima' ); ?></h2>
+<h2 class="wp-block-heading"><?php esc_html_e( 'Quatre métiers qui se complètent', 'digima' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"digima-chapeau","textColor":"texte-secondaire","fontSize":"large"} -->

@@ -4,7 +4,7 @@ Theme URI: https://www.digima.be
 Author: Digima
 Author URI: https://www.digima.be
 Description: Thème blocs de Digima (agence web, cloud souverain, open data, conseil IA).
-Version: 0.6.4
+Version: 0.6.5
 Requires at least: 6.9
 Requires PHP: 8.0
 License: GPL-2.0-or-later
@@ -587,6 +587,164 @@ a:where(:not(.wp-element-button)):hover {
 	width: auto;
 	filter: grayscale(1);
 	opacity: 0.75;
+}
+
+/*
+ * Galerie « Logos défilants » : chaque logo dans une tuile, en niveaux de gris (couleur au survol).
+ * Sur le site : bande horizontale à défilement magnétique, 4 logos visibles (3 puis 2 sur petit écran).
+ * Flèches et points ajoutés par assets/js/defilant.js. Dans l'éditeur, la galerie reste une grille.
+ */
+.wp-block-gallery.has-nested-images.is-style-logos-defilants {
+	--dg-logos-par-vue: 4;
+	--dg-logos-espace: var(--wp--preset--spacing--40);
+	gap: var(--dg-logos-espace);
+}
+
+.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image) {
+	flex: 0 0 calc((100% - (var(--dg-logos-par-vue) - 1) * var(--dg-logos-espace)) / var(--dg-logos-par-vue));
+	width: auto;
+	margin: 0;
+	padding: var(--wp--preset--spacing--40);
+	background: var(--dg-carte);
+	border: 1px solid var(--dg-filet);
+	border-radius: var(--wp--custom--radius--lg);
+	justify-content: center;
+	align-items: center;
+}
+
+.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image) img {
+	flex: none;
+	width: 100%;
+	height: 4.5rem;
+	object-fit: contain;
+	filter: grayscale(1);
+	opacity: 0.75;
+	transition: filter 0.2s, opacity 0.2s;
+}
+
+.wp-block-gallery.has-nested-images.is-style-logos-defilants figure.wp-block-image:not(#individual-image):hover img {
+	filter: none;
+	opacity: 1;
+}
+
+:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.has-nested-images.is-style-logos-defilants {
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
+}
+
+:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.is-style-logos-defilants::-webkit-scrollbar {
+	display: none;
+}
+
+:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.is-style-logos-defilants figure.wp-block-image {
+	scroll-snap-align: start;
+}
+
+@media (max-width: 900px) {
+	.wp-block-gallery.has-nested-images.is-style-logos-defilants {
+		--dg-logos-par-vue: 3;
+	}
+}
+
+@media (max-width: 600px) {
+	.wp-block-gallery.has-nested-images.is-style-logos-defilants {
+		--dg-logos-par-vue: 2;
+	}
+}
+
+.digima-defilant {
+	position: relative;
+	padding-inline: 3.25rem;
+	padding-bottom: 2.5rem;
+}
+
+.digima-defilant.est-statique {
+	padding-inline: 0;
+	padding-bottom: 0;
+}
+
+.digima-defilant.est-statique .digima-defilant__fleche,
+.digima-defilant.est-statique .digima-defilant__points {
+	display: none;
+}
+
+.digima-defilant__fleche {
+	position: absolute;
+	top: calc(50% - 1.25rem);
+	transform: translateY(-50%);
+	width: 2.5rem;
+	height: 2.5rem;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: 1px solid var(--dg-filet-fort);
+	border-radius: 50%;
+	background: var(--dg-carte);
+	color: inherit;
+	font: inherit;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+.digima-defilant__fleche:hover {
+	background: var(--wp--preset--color--vert);
+	border-color: var(--wp--preset--color--vert);
+	color: var(--wp--preset--color--nuit);
+}
+
+.digima-defilant__fleche--prec {
+	left: 0;
+}
+
+.digima-defilant__fleche--suiv {
+	right: 0;
+}
+
+.digima-defilant__points {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	gap: 0.25rem;
+}
+
+.digima-defilant__point {
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+}
+
+.digima-defilant__point::before {
+	content: "";
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background: var(--dg-filet-fort);
+	transition: background-color 0.2s, transform 0.2s;
+}
+
+.digima-defilant__point[aria-current="true"]::before {
+	background: var(--wp--preset--color--acier);
+	transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:where(body:not(.editor-styles-wrapper)) .wp-block-gallery.has-nested-images.is-style-logos-defilants {
+		scroll-behavior: auto;
+	}
 }
 
 /* Liste « Coches » : pastille verte avec une coche à la place de la puce. */
